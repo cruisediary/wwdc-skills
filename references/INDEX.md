@@ -21,7 +21,7 @@ All paths are relative to the `references/` directory.
 | canonical/create-ml.md | Create ML | macOS 10.14+ | deprecated | Superseded by Create ML app and Core ML workflow |
 | canonical/arkit.md | ARKit | iOS 11+ | deprecated | ARKit 1–3 superseded by RealityKit + visionOS for spatial computing |
 | canonical/siri-shortcuts.md | Siri Shortcuts | iOS 12+ | deprecated | INIntent/INExtension superseded by App Intents framework (iOS 16+) |
-| 2018/swift-4-2.md | Swift | iOS 12+ | reference-only | WWDC18: conditional conformances, CaseIterable, random APIs |
+| 2018/swift-4-2.md | Swift | iOS 12+ | deprecated | WWDC18: conditional conformances, CaseIterable, random APIs |
 | 2018/arkit-2.md | ARKit | iOS 12+ | deprecated | WWDC18: ARKit 2 — world tracking, face anchors, image tracking |
 | 2018/create-ml.md | Create ML | macOS 10.14+ | deprecated | WWDC18: Create ML introduction — tabular, image, text classifiers |
 | 2018/siri-shortcuts.md | Siri Shortcuts | iOS 12+ | deprecated | WWDC18: INIntent shortcuts, SiriKit donation |
