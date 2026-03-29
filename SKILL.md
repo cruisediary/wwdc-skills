@@ -20,14 +20,16 @@ Read `references/INDEX.md`. All file paths in that file are relative to the `ref
 
 **Step 2: Classify the query** (use this priority order)
 
-**Migration mode** — check this first. Triggers if the query contains "migrate", "convert", "from X to Y", or explicitly names two APIs/frameworks as source and target:
+**Migration mode** — check this first. Triggers if the query contains "migrate" or "convert", OR if two distinct named Apple APIs/frameworks are explicitly identified as source and target. Do NOT trigger on year-to-year iOS/macOS version comparisons (e.g., "What changed from iOS 16 to iOS 17?") — those are year/session mode queries.
 - Same framework, different years (e.g., "migrate SwiftData 2023 → 2024"): load `references/{source-year}/{framework}.md` AND `references/canonical/{framework}.md`
 - Different frameworks (e.g., "migrate from Combine to async/await"): load `references/canonical/{source-framework}.md` AND `references/canonical/{target-framework}.md`
 - If the source file doesn't exist in the repo: load only the canonical target file and explain the current approach
 - In migration mode: always produce a before/after diff response, ignoring the loaded file's `shape` field
 
 **Year/session mode** — triggers if the query names a specific WWDC year or session ID (e.g., "WWDC23", "WWDC21-10132"):
-Load `references/{year}/{framework}.md`
+- If the query contains a session ID (e.g., "WWDC24-10137"), look up that session ID in INDEX.md's session column to resolve the framework name, then load `references/{year}/{framework}.md`.
+- If a year is identified but no specific framework is named, list the key topics from INDEX.md rows for that year and ask the user which framework to focus on before loading any file.
+- If a framework is identified, load `references/{year}/{framework}.md`.
 
 **Current API mode** — default for all other queries:
 Load `references/canonical/{framework}.md`. If multiple INDEX.md rows match the same framework, always prefer the canonical file over year-stamped files.
@@ -35,6 +37,7 @@ Load `references/canonical/{framework}.md`. If multiple INDEX.md rows match the 
 **Step 3: Handle not-found**
 If no matching framework is found in INDEX.md, respond exactly:
 > "This session or framework isn't covered yet in wwdc-skills."
+If INDEX.md has a matching row but the resolved file path does not exist on disk, respond with the same not-found message rather than erroring.
 Do not attempt to answer from general knowledge.
 
 **Step 4: Apply status behavior**
@@ -44,10 +47,14 @@ Check the `status` field in the loaded file's YAML frontmatter:
 - `deprecated` → briefly acknowledge what was asked, then say: "This API has been superseded — see [superseded_by path] for the current approach."
 
 **Step 5: Structure the response**
-Use the `shape` field to structure your response (migration mode always overrides to before/after diff):
+Use the `shape` field to structure your response:
 - `code-first` → Quick start example → Key APIs table → Common patterns → Gotchas
 - `guide-first` → What changed and why → Mental model → Usage example → Adopting this pattern (if present in the file)
 - `migration` → What's new → Before / After → Migration steps → Compatibility notes
-- Migration mode override → Before / After → Migration steps → Compatibility notes
+
+Note on `shape: migration` vs migration mode:
+- `shape: migration` is a field that may appear on year-stamped files loaded via year/session mode or current API mode. It indicates the file's content is structured as a migration guide and should be rendered accordingly.
+- Migration mode (Step 2) is a router state triggered by the query itself. When the router is in migration mode, always produce a before/after diff response regardless of the loaded file's `shape` field.
+- Canonical files (loaded in current API mode) will never have `shape: migration`; the migration mode override only applies when the Step 2 router classified the query as migration mode.
 
 Produce a **conversational answer** using the reference file as source material. Do not dump the file verbatim.
