@@ -38,11 +38,12 @@ class Article {
 **After (WWDC24 — index + uniqueness):**
 ```swift
 @Model
-#Index<Article>([\.slug])
-#Unique<Article>(\.slug)
 class Article {
     var slug: String
     var title: String
+
+    #Index<Article>([\.slug])
+    #Unique<Article>([\.slug])
 }
 ```
 
