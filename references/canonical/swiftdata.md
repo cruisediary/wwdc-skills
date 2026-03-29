@@ -99,7 +99,7 @@ struct ContentView: View {
 
 ```swift
 // Filtered query
-@Query(filter: #Predicate<Book> { $0.rating > 3 }, sort: \Book.title)
+@Query(filter: #Predicate<Book> { $0.author == "Herbert" }, sort: \Book.title)
 var topBooks: [Book]
 
 // Manual fetch outside SwiftUI
