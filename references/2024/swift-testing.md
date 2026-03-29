@@ -83,7 +83,7 @@ import Testing
 3. Replace `func testFoo()` with `@Test func foo()` (drop the `test` prefix)
 4. Replace `XCTAssertEqual(a, b)` with `#expect(a == b)`
 5. Replace `XCTAssertThrowsError` with `#expect(throws: ErrorType.self) { }`
-6. Replace `setUp`/`tearDown` with `init`/`deinit` on the `@Suite` struct
+6. Replace `setUp`/`tearDown` with `init`/`deinit` on the `@Suite class` (use `class`, not `struct` — structs don't support `deinit`)
 7. Replace manual test loops with `@Test(arguments:)` for parameterization
 
 ## Compatibility notes

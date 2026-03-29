@@ -90,8 +90,8 @@ func additionTable(a: Int, b: Int, expected: Int) {
     }
 }
 
-// setUp/tearDown equivalent — use init/deinit on @Suite struct
-@Suite struct DatabaseTests {
+// setUp/tearDown equivalent — use init/deinit on @Suite class
+@Suite class DatabaseTests {
     let db: TestDatabase
 
     init() async throws {
