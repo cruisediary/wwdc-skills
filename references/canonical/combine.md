@@ -7,7 +7,7 @@ superseded_by: null
 history:
   - year: 2019
     file: 2019/combine.md
-    summary: Combine introduction — Publisher, Subscriber, operators
+    summary: "Initial introduction — publishers, subscribers, operators"
 ---
 
 # Combine

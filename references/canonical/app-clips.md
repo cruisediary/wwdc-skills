@@ -7,7 +7,7 @@ superseded_by: null
 history:
   - year: 2020
     file: 2020/app-clips.md
-    summary: App Clips introduction
+    summary: "Initial introduction — App Clip experiences, SKOverlay, NSUserActivity"
 ---
 
 # App Clips

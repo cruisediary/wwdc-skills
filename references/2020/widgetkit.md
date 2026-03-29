@@ -22,8 +22,6 @@ WidgetKit was introduced at WWDC20, replacing Today Extensions with a SwiftUI-na
 - `WidgetConfiguration` — `StaticConfiguration` or `IntentConfiguration`
 - `WidgetFamily` — `.systemSmall`, `.systemMedium`, `.systemLarge`
 - Widget bundles (`@main WidgetBundle`) — ship multiple widget types from one extension
-- Lock screen widgets added in iOS 16 (`.accessoryCircular`, `.accessoryRectangular`)
-- `AppIntentConfiguration` replaced `IntentConfiguration` in iOS 17
 
 ## Before / After
 

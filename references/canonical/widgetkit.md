@@ -7,7 +7,16 @@ superseded_by: null
 history:
   - year: 2020
     file: 2020/widgetkit.md
-    summary: WidgetKit introduction — Widget, TimelineProvider, Entry
+    summary: "Initial introduction — TimelineProvider, Widget protocol, WidgetBundle"
+  - year: 2022
+    file: null
+    summary: "Lock Screen widgets, accessory widget families"
+  - year: 2023
+    file: null
+    summary: "Interactive widgets — Button/Toggle inside widget views"
+  - year: 2024
+    file: null
+    summary: "AppIntentTimelineProvider replaces IntentTimelineProvider"
 ---
 
 # WidgetKit
