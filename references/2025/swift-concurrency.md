@@ -13,7 +13,7 @@ related:
 
 # Swift Concurrency — WWDC25 Updates
 
-WWDC25 introduced default actor isolation (Swift 6.2) and additional strict concurrency improvements.
+WWDC25 introduced default actor isolation (Swift 6 / Xcode 26) and additional strict concurrency improvements.
 
 ## What's new
 
@@ -25,18 +25,19 @@ WWDC25 introduced default actor isolation (Swift 6.2) and additional strict conc
 
 **Before (pre-WWDC25 — explicit @MainActor everywhere):**
 ```swift
+// Before — explicit @MainActor on a SwiftUI view
 @MainActor
-class MyViewModel: ObservableObject {
-    @Published var title = ""
-}
+struct MyView: View {
+    var body: some View { Text("Hello") }
 
-@MainActor
-func updateTitle(_ title: String) { ... }
+    @MainActor
+    func handleTap() { }
+}
 ```
 
 **After (WWDC25 — default isolation on View-conforming types):**
 ```swift
-// SwiftUI Views are implicitly @MainActor — no annotation needed
+// After — @MainActor is implicit for View conformances
 struct MyView: View {
     var body: some View { Text("Hello") }
 

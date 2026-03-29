@@ -33,6 +33,7 @@ async/await, structured concurrency, and actors were introduced at WWDC21 (Swift
 **Before (completion handlers):**
 ```swift
 func loadUser(id: String, completion: @escaping (Result<User, Error>) -> Void) {
+    let url = URL(string: "https://api.example.com/users/\(id)")!
     URLSession.shared.dataTask(with: url) { data, _, error in
         if let error = error { completion(.failure(error)); return }
         do {
@@ -58,6 +59,7 @@ loadUser(id: "1") { result in
 **After (async/await):**
 ```swift
 func loadUser(id: String) async throws -> User {
+    let url = URL(string: "https://api.example.com/users/\(id)")!
     let (data, _) = try await URLSession.shared.data(from: url)
     return try JSONDecoder().decode(User.self, from: data)
 }
