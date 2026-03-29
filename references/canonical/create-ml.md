@@ -3,7 +3,7 @@ framework: Create ML
 status: deprecated
 applies_to: macOS 10.14+
 shape: code-first
-superseded_by: null
+superseded_by: null  # no in-repo successor — superseded by Create ML app GUI workflow
 history:
   - year: 2018
     file: 2018/create-ml.md

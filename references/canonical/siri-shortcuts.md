@@ -3,7 +3,7 @@ framework: Siri Shortcuts
 status: deprecated
 applies_to: iOS 12+
 shape: code-first
-superseded_by: null
+superseded_by: null  # no in-repo successor yet — App Intents (canonical/app-intents.md) not yet added
 history:
   - year: 2018
     file: 2018/siri-shortcuts.md

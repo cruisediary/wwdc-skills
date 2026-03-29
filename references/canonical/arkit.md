@@ -3,7 +3,7 @@ framework: ARKit
 status: deprecated
 applies_to: iOS 11+
 shape: code-first
-superseded_by: null
+superseded_by: null  # no in-repo successor — superseded by RealityKit/RealityView (see canonical/visionos.md)
 history:
   - year: 2018
     file: 2018/arkit-2.md
