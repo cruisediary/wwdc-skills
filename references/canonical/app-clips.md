@@ -18,6 +18,7 @@ Lightweight, on-demand app experiences that launch from QR codes, NFC tags, App 
 
 ```swift
 // AppClip target's @main App entry point
+import StoreKit
 import SwiftUI
 
 @main
@@ -51,14 +52,13 @@ struct AppClipContentView: View {
 }
 
 // Prompt to install the full app
-import StoreKit
-
 struct AppClipUpgradeView: View {
     var body: some View {
         Button("Get Full App") {
             let config = SKOverlay.AppClipConfiguration(position: .bottom)
             if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                SKOverlay(configuration: config).present(in: scene)
+                let overlay = SKOverlay(configuration: config)
+                overlay.present(in: scene)
             }
         }
     }
