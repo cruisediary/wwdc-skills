@@ -67,13 +67,17 @@ public macro stringify<T>(_ value: T) -> (T, String) =
 import SwiftSyntaxMacros
 import SwiftSyntax
 
+enum StringifyMacroError: Error {
+    case missingArgument
+}
+
 public struct StringifyMacro: ExpressionMacro {
     public static func expansion(
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
-        guard let argument = node.argumentList.first?.expression else {
-            throw MacroExpansionErrorMessage("Missing argument")
+        guard let argument = node.arguments.first?.expression else {
+            throw StringifyMacroError.missingArgument
         }
         return "(\(argument), \(literal: argument.description))"
     }
