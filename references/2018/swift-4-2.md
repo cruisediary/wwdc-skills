@@ -2,7 +2,7 @@
 framework: Swift
 session: WWDC18-401
 year: 2018
-applies_to: iOS 12+
+applies_to: Xcode 10 / Swift 4.2
 status: deprecated
 superseded_by: null
 shape: migration

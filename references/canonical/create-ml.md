@@ -24,7 +24,7 @@ let classifier = try MLClassifier(trainingData: trainingData,
                                    targetColumn: "label")
 
 let metrics = classifier.trainingMetrics
-print("Accuracy: \(metrics.classificationError)")
+print("Accuracy: \(1.0 - metrics.classificationError)")
 
 // Save the trained model
 try classifier.write(to: URL(fileURLWithPath: "/path/to/MyModel.mlmodel"))

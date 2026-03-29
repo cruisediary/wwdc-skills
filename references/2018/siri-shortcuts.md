@@ -72,7 +72,7 @@ interaction.donate(completion: nil)
    - **NSUserActivity** (simpler): set `isEligibleForPrediction = true` and `suggestedInvocationPhrase` on existing activities.
    - **Custom INIntent** (richer): create an `.intentdefinition` file, add an Intents Extension target, implement the handler protocol.
 3. Add `INVoiceShortcutButton` to relevant screens so users can add the shortcut to Siri.
-4. Add the `NSUserActivityTypes` or intent class names to `Info.plist` under `NSExtension`.
+4. Register your shortcuts in `Info.plist`: add `NSUserActivityTypes` (array of activity type strings) to the **main app's** `Info.plist` at the root level; add intent class names to the **Intents Extension's** `Info.plist` under the `NSExtension` → `NSExtensionAttributes` → `IntentsSupported` key.
 5. Test in the Shortcuts app — donated shortcuts appear under your app in the Shortcuts gallery.
 
 > For new projects targeting iOS 16+, use App Intents instead. See `canonical/siri-shortcuts.md`.

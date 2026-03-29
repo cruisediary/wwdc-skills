@@ -52,6 +52,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 // Add a SceneKit node when a plane is detected
 func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
     guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+    // extent.z maps to height for horizontal planes; adapt for vertical ARPlaneAnchor.alignment
     let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x),
                          height: CGFloat(planeAnchor.extent.z))
     let planeNode = SCNNode(geometry: plane)
