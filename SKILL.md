@@ -27,7 +27,7 @@ Read `references/INDEX.md`. All file paths in that file are relative to the `ref
 - In migration mode: always produce a before/after diff response, ignoring the loaded file's `shape` field
 
 **Year/session mode** — triggers if the query names a specific WWDC year or session ID (e.g., "WWDC23", "WWDC21-10132"):
-- If the query contains a session ID (e.g., "WWDC24-10137"), look up that session ID in INDEX.md's session column to resolve the framework name, then load `references/{year}/{framework}.md`.
+- If the query contains a session ID (e.g., "WWDC24-10137"), session IDs follow the format `WWDC{YY}-{5-digit-ID}`. Extract the year from the ID (e.g., `24` → `2024`). Use the query context or surrounding text to identify the framework name. If no framework can be identified from context, ask the user to clarify which framework they're asking about before loading any file. Once the framework is known, load `references/{year}/{framework}.md`.
 - If a year is identified but no specific framework is named, list the key topics from INDEX.md rows for that year and ask the user which framework to focus on before loading any file.
 - If a framework is identified, load `references/{year}/{framework}.md`.
 
