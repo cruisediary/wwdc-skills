@@ -1,7 +1,7 @@
 ---
 framework: UIKit
 title: "What's new in UIKit"
-session: WWDC25-10118
+session: WWDC25-243
 year: 2025
 applies_to: iOS 26+
 status: reference-only

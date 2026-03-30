@@ -15,6 +15,14 @@ related:
 
 A guide to running iOS apps on macOS using Mac Catalyst and native Mac SwiftUI, covering when to use each approach and key APIs for Mac-idiomatic UI.
 
+## What changed and why
+
+WWDC22 consolidated guidance on the three Mac deployment paths — Mac Catalyst, Designed for iPad, and native SwiftUI multiplatform — that had accumulated across several releases, making the trade-offs explicit. Xcode 14's multi-platform targets reduced the per-platform target overhead, encouraging a single codebase that conditionally adapts, rather than maintaining parallel app targets.
+
+## Mental model
+
+Think of the three paths as a spectrum of fidelity versus effort: Designed for iPad requires zero Mac-specific code but delivers an iOS UI at a fixed scale, Mac Catalyst runs UIKit on macOS with optional Mac-style chrome, and native SwiftUI multiplatform gives the highest Mac fidelity by using platform-adaptive components. The key decision driver is how much of your app depends on touch-specific interactions versus data and business logic — the more logic you have and the less touch-specific your UI, the more a full multiplatform target pays off.
+
 ## Approaches
 
 | Approach | When to use |
@@ -117,7 +125,7 @@ windowScene.titlebar?.toolbar = toolbar
 #endif
 ```
 
-## Design guidance
+## Adopting this pattern
 
 - Mac apps use menus, not swipe actions — add `.contextMenu` and `CommandMenu` entries
 - Prefer `.toolbar` with `ToolbarItem(placement: .primaryAction)` for primary actions

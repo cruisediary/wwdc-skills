@@ -1,7 +1,7 @@
 ---
 framework: SwiftUI
 title: "What's new in SwiftUI"
-session: WWDC25-10144
+session: WWDC25-256
 year: 2025
 applies_to: iOS 26+
 status: reference-only

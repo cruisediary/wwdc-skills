@@ -6,7 +6,7 @@ year: 2022
 applies_to: iOS 16+
 status: reference-only
 superseded_by: null
-shape: migration
+shape: guide-first
 related:
   - canonical/arkit.md
 ---
@@ -15,7 +15,7 @@ related:
 
 ARKit 6 introduced 4K video capture, improved motion capture, and refinements to plane detection and scene understanding.
 
-## What's new
+## What changed and why
 
 - **4K video capture** — `ARWorldTrackingConfiguration` can now deliver 4K camera frames on supported devices (iPhone 11 Pro and later, iPad Pro)
 - **HDR video** — high dynamic range video capture support
@@ -23,6 +23,10 @@ ARKit 6 introduced 4K video capture, improved motion capture, and refinements to
 - **Background thread `ARSession`** — sessions can run on a background thread for reduced main-thread load
 - **`ARGeoTrackingConfiguration` improvements** — expanded city coverage for GPS-anchored AR
 - **Plane classification improvements** — more accurate horizontal and vertical plane detection
+
+## Mental model
+
+ARKit is a session-and-anchor model: you configure a session with a tracking configuration, run it, and the session delivers a stream of frame data and anchor updates as the device understands its environment. Configurations select the tracking mode — world, body, geo — and each mode populates a different set of anchor types. Think of ARKit as the perception layer that answers "where am I and what's around me?", while RealityKit or SceneKit layers the rendering on top.
 
 ## 4K video capture
 
@@ -79,7 +83,7 @@ let anchor = ARGeoAnchor(
 session.add(anchor: anchor)
 ```
 
-## Migration steps
+## Adopting this pattern
 
 1. Update `videoFormat` selection logic to prefer 4K formats on capable devices
 2. For body tracking apps, test against improved skeleton accuracy on iOS 16

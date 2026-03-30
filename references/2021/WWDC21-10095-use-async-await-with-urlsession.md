@@ -86,7 +86,7 @@ for try await byte in asyncBytes {
 }
 ```
 
-## Before / After
+## Quick start
 
 **Before (dataTask with completion handler):**
 ```swift
@@ -113,7 +113,7 @@ func fetchUser(id: Int) async throws -> User {
 }
 ```
 
-## Cancellation
+## Common patterns
 
 ```swift
 // Wrap in a Task to support cancellation
@@ -131,7 +131,7 @@ func loadImage(from url: URL) async throws -> UIImage {
 // Cancelling the Task automatically cancels the underlying URLSession task
 ```
 
-## Compatibility notes
+## Gotchas
 
 - `URLSession.data(from:)`, `URLSession.data(for:)`, `URLSession.bytes(from:)` require iOS 15+
 - `URLSession.download(from:)` requires iOS 15+

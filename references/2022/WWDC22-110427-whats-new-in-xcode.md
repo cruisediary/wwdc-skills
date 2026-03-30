@@ -6,7 +6,7 @@ year: 2022
 applies_to: iOS 16+
 status: reference-only
 superseded_by: null
-shape: migration
+shape: guide-first
 related: []
 ---
 
@@ -14,7 +14,7 @@ related: []
 
 Xcode 14 introduced multi-platform targets (a single target builds for iOS, macOS, etc.), a build timeline visualiser, memory debugger improvements, and Swift Package plugins.
 
-## What's new
+## What changed and why
 
 - **Multi-platform targets** — a single app target can list multiple supported platforms instead of requiring separate targets per platform
 - **Build timeline** — new build performance visualiser showing parallelism and bottlenecks (Product > Perform Action > Build with Timing Summary, or the build timeline view)
@@ -24,6 +24,10 @@ Xcode 14 introduced multi-platform targets (a single target builds for iOS, macO
 - **Smaller iOS app binaries** — Xcode 14 reduces binary size via improved bitcode-free linking
 - **Improved code completion** — faster and more accurate completions
 - **Regex literals** — syntax highlighting and compile-time validation for `/pattern/` literals
+
+## Mental model
+
+Xcode 14's theme is reducing structural overhead: multi-platform targets collapse what used to be separate per-platform targets into one, Swift Package plugins bring code generation and formatting into the build graph rather than requiring external shell scripts, and parallel testing compresses the test-feedback loop. Think of the release as "same capabilities, less scaffolding" — the goal is fewer project-file changes when adding a platform or a new code-generation step.
 
 ## Multi-platform targets
 

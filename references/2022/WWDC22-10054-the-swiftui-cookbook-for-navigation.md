@@ -16,7 +16,15 @@ related:
 
 A deep-dive into the new navigation APIs introduced in iOS 16: `NavigationStack`, `NavigationPath`, and programmatic deep linking patterns.
 
-## Core APIs
+## What changed and why
+
+iOS 16 replaced `NavigationView` with `NavigationStack` and `NavigationSplitView`, shifting navigation from a view-hierarchy-driven model to a data-driven one. The old pattern required imperative boolean flags and nested destinations; the new model stores the entire navigation stack as a typed value (`NavigationPath`) that can be read, mutated, serialized, and restored — enabling deep linking and state restoration without boilerplate.
+
+## Mental model
+
+Think of `NavigationStack` as a typed array of pushed values: you append a value to push a screen and remove the last element to pop. `NavigationPath` is a heterogeneous version of that array — each appended type gets routed to the `.navigationDestination(for:)` registered for that type, anywhere in the stack. The key mental shift is that navigation state lives in your data layer, not inside the view hierarchy.
+
+## Usage example
 
 ### NavigationStack
 
@@ -107,7 +115,7 @@ NavigationSplitView {
 }
 ```
 
-## Design patterns
+## Adopting this pattern
 
 - **Single source of truth** — store `NavigationPath` in `@State` or a view model; encode it for state restoration
 - **Type-based routing** — each navigable type registers exactly one `.navigationDestination(for:)` in the stack

@@ -15,7 +15,7 @@ related:
 
 WWDC22 introduced multi-task training in Create ML, allowing a single model to perform several related tasks simultaneously, improving accuracy and reducing model size.
 
-## What's new
+## What changed and why
 
 - **Multi-task training** — train one model that shares learned representations across multiple tasks
 - `MLTaskConfiguration` — configure individual tasks within a composite training job
@@ -23,7 +23,11 @@ WWDC22 introduced multi-task training in Create ML, allowing a single model to p
 - Custom training loops — finer control over epochs, learning rate, and checkpointing
 - Improved `MLJob` — async/await friendly training observation
 
-## Key APIs
+## Mental model
+
+Think of a multi-task Create ML model as a shared feature extractor with multiple specialist heads: the backbone learns general representations from all tasks simultaneously, while each head specializes on its own label set. This joint training tends to produce a more accurate and compact model than training separate single-task models, because the tasks reinforce each other's signal. The `MLTrainingSession` acts as a resumable checkpoint — training is a long-running async process, not a single blocking call.
+
+## Usage example
 
 ```swift
 import CreateML

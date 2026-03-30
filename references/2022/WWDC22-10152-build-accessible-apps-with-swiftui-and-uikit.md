@@ -14,7 +14,15 @@ related: []
 
 A deep dive into VoiceOver customisation, accessibility rotor entries, and custom content in both SwiftUI and UIKit, targeting iOS 16 improvements.
 
-## Key APIs
+## What changed and why
+
+iOS 15–16 expanded the accessibility APIs to address two long-standing gaps: structured navigation (custom rotors for jumping between headings, errors, or any named category) and information density control (custom content that VoiceOver reads on demand rather than always). These additions give developers fine-grained control over the VoiceOver experience without requiring a parallel accessible view hierarchy.
+
+## Mental model
+
+Think of VoiceOver as reading a linearized version of your view hierarchy: it reads each accessible element in order, with its label, value, traits, and hint. Accessibility modifiers let you reshape that linearization — combining noisy child elements into one, appending secondary details behind a "more content" gesture, and adding rotor shortcuts so users can jump to the type of content they care about. The goal is to make the auditory experience as navigable and concise as the visual one.
+
+## Usage example
 
 ### AccessibilityRotorEntry (SwiftUI)
 
@@ -136,7 +144,7 @@ override var accessibilityCustomRotors: [UIAccessibilityCustomRotor]? {
 }
 ```
 
-## Design guidance
+## Adopting this pattern
 
 - Always provide `.accessibilityLabel` for images and icons that convey meaning
 - Use `.accessibilityCustomContent` for secondary details to keep the default read-out concise

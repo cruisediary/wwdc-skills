@@ -15,7 +15,7 @@ related:
 
 Introduces the `actor` type — a reference type that serializes access to its own mutable state, eliminating data races at the language level.
 
-## Core concepts
+## What changed and why
 
 - `actor` — like a `class`, but the compiler enforces that mutable state is only accessed from within the actor's executor
 - Actor isolation — the actor's own body can access state directly (synchronously); callers from outside must `await`
@@ -23,7 +23,11 @@ Introduces the `actor` type — a reference type that serializes access to its o
 - `nonisolated` — opts a method or property out of actor isolation (must not touch mutable actor state)
 - Reentrancy — actors can interleave work between suspension points; guard invariants across awaits
 
-## Key APIs
+## Mental model
+
+Think of an actor as a class with a built-in serial queue: callers from outside must wait their turn at an `await` point, while code inside the actor runs uncontested. The key shift from GCD-based patterns is that the compiler enforces the boundary — you cannot accidentally access actor state from the wrong context. Reentrancy is the one subtlety: actors process other work between suspension points, so invariants must be re-checked after every `await`.
+
+## Usage example
 
 ```swift
 // Declaring an actor
@@ -83,7 +87,7 @@ Task.detached {
 }
 ```
 
-## Reentrancy — key pattern
+## Adopting this pattern
 
 ```swift
 actor BankAccount {

@@ -15,7 +15,7 @@ related:
 
 Swift Charts is introduced as a SwiftUI-native, declarative charting framework. A chart is composed of *marks* — visual representations of data — combined in a `Chart` container.
 
-## Core mark types
+## Quick start
 
 | Mark | Use case |
 |---|---|
@@ -26,7 +26,7 @@ Swift Charts is introduced as a SwiftUI-native, declarative charting framework. 
 | `RuleMark` | Reference lines, thresholds |
 | `RectangleMark` | Heatmaps, interval ranges |
 
-## Basic chart construction
+## Key APIs
 
 ```swift
 import Charts
@@ -45,7 +45,7 @@ struct SalesChart: View {
 }
 ```
 
-## Multi-series with foregroundStyle
+## Common patterns
 
 ```swift
 Chart(data) { item in
@@ -78,7 +78,7 @@ Chart(data) { item in
 - VoiceOver reads individual data points by default
 - Override with `.accessibilityLabel(_:)` and `.accessibilityValue(_:)` on marks
 
-## Compatibility notes
+## Gotchas
 
 - Swift Charts requires iOS 16+ / macOS 13+
 - No import of third-party packages needed — system framework (`import Charts`)

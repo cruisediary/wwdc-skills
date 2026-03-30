@@ -15,7 +15,7 @@ related:
 
 Introduces the `AsyncSequence` protocol — the async counterpart to `Sequence`, enabling `for await in` loops over values that arrive over time.
 
-## Core concepts
+## Quick start
 
 - `AsyncSequence` — like `Sequence` but each element is produced asynchronously; iteration suspends between elements
 - `for await in` — the loop body runs once per element, suspending at the top of each iteration while waiting for the next
@@ -124,7 +124,7 @@ for await count in CountDown(start: 3) {
 }
 ```
 
-## Before / After
+## Common patterns
 
 **Before (delegate callbacks accumulating into an array):**
 ```swift
@@ -150,7 +150,7 @@ for await location in makeLocationStream(manager: manager) {
 }
 ```
 
-## Compatibility notes
+## Gotchas
 
 - `AsyncSequence`, `AsyncStream`, and `for await in` require iOS 15+
 - `AsyncThrowingStream` — throwing variant; iteration is `for try await in`

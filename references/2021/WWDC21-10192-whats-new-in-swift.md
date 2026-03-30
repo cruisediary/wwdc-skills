@@ -6,7 +6,7 @@ year: 2021
 applies_to: iOS 15+
 status: reference-only
 superseded_by: null
-shape: migration
+shape: guide-first
 related: []
 ---
 
@@ -14,7 +14,7 @@ related: []
 
 Swift 5.5 additions: `async`/`await`, `Sendable`, `#if canImport`, property wrapper improvements, `@available` without version, and result builders (now stable).
 
-## What's new
+## What changed and why
 
 - **`async`/`await`** — see WWDC21-10132 for full detail
 - **`actor` type** — see WWDC21-10133 for full detail
@@ -25,6 +25,10 @@ Swift 5.5 additions: `async`/`await`, `Sendable`, `#if canImport`, property wrap
 - **`CGFloat` / `Double` interoperability** — implicit coercion between `CGFloat` and `Double`
 - **`async let`** — parallel async bindings (see WWDC21-10134)
 - **Improved property wrappers** — property wrappers can now be applied to function parameters
+
+## Mental model
+
+Swift 5.5 is best understood as the release that made concurrency a first-class language feature rather than a library concern: `async`/`await` and `actor` are compiler-enforced concepts, not just new types. Alongside concurrency, the release stabilized result builders — the DSL mechanism that powers SwiftUI's `@ViewBuilder` — and tightened cross-platform and cross-framework interoperability. The common theme is moving correctness guarantees from runtime crashes and documentation into the type system.
 
 ## Key APIs
 
@@ -96,7 +100,7 @@ func process() {
 }
 ```
 
-## Migration steps
+## Adopting this pattern
 
 1. Adopt `Sendable` on types passed between tasks or actors; the compiler warns in strict concurrency mode
 2. Replace `as! CGFloat` casts with direct `Double`/`CGFloat` assignment where Swift 5.5 implicit coercion applies

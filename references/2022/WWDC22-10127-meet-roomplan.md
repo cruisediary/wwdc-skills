@@ -14,7 +14,13 @@ related: []
 
 RoomPlan is introduced as a new ARKit-backed framework for scanning and capturing the 3D structure of interior rooms, detecting walls, doors, windows, and furniture.
 
-## Core APIs
+## Quick start
+
+- Import `RoomPlan`; instantiate `RoomCaptureSession`, set its `delegate`, call `run(configuration:)` to begin scanning, and `stop()` when done
+- Use `RoomCaptureView` for a turn-key scanning UI that shows real-time AR feedback without custom rendering code
+- Handle results in `captureSession(_:didEndWith:error:)` and export the `CapturedRoom` to a USDZ file
+
+## Key APIs
 
 ### RoomCaptureSession
 
@@ -102,7 +108,7 @@ let dimensions = surface.dimensions  // simd_float3 — width, height, depth
 let confidence = surface.confidence  // .low / .medium / .high
 ```
 
-### Exporting
+## Common patterns
 
 ```swift
 // Export as USDZ for use in Reality Composer, Quick Look, etc.
@@ -111,7 +117,7 @@ let outputURL = FileManager.default.temporaryDirectory
 try room.export(to: outputURL)
 ```
 
-## Compatibility notes
+## Gotchas
 
 - RoomPlan requires **iPhone with LiDAR Scanner** (iPhone 12 Pro and later, iPad Pro with LiDAR)
 - Requires iOS 16+

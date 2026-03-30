@@ -1,7 +1,7 @@
 ---
 framework: SwiftData
-title: "What's new in SwiftData"
-session: WWDC25-10137
+title: "SwiftData: Dive into inheritance and schema migration"
+session: WWDC25-291
 year: 2025
 applies_to: iOS 26+
 status: reference-only

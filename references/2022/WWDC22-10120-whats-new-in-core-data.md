@@ -6,7 +6,7 @@ year: 2022
 applies_to: iOS 16+
 status: reference-only
 superseded_by: null
-shape: migration
+shape: guide-first
 related: []
 ---
 
@@ -14,13 +14,17 @@ related: []
 
 iOS 16 and macOS 13 brought CloudKit sync improvements to `NSPersistentCloudKitContainer`, better history tracking via `NSPersistentHistoryTransaction`, and staged migration support.
 
-## What's new
+## What changed and why
 
 - **CloudKit sync conflict resolution** — improved merge policy handling in `NSPersistentCloudKitContainer`
 - **`NSPersistentHistoryTransaction`** — track fine-grained changes for UI refresh and sync reconciliation
 - **Staged migration** — break large schema migrations into sequential lightweight stages
 - **`NSManagedObjectContext` improvements** — `performAndWait` async/await version (`perform`)
 - **SwiftUI integration** — `@FetchRequest` with `SectionedFetchRequest` improvements
+
+## Mental model
+
+Core Data is best understood as a graph of managed objects sitting on top of a persistent store, with a context acting as a scratchpad: changes accumulate in the context and are flushed to the store on `save()`. CloudKit sync adds a second dimension — a remote timeline of changes that must be merged into the local graph — and persistent history transactions are the mechanism that lets you replay only what changed since your last checkpoint. Think of `NSPersistentHistoryTransaction` as a change log you can consume incrementally, rather than diffing the entire object graph on every sync notification.
 
 ## Key APIs
 
@@ -85,7 +89,7 @@ container.loadPersistentStores { _, error in
 }
 ```
 
-## Migration steps
+## Adopting this pattern
 
 1. Enable persistent history tracking (`NSPersistentHistoryTrackingKey`) on all stores that use CloudKit sync
 2. Observe `NSPersistentStoreRemoteChangeNotification` to merge remote changes into the UI context

@@ -1,7 +1,7 @@
 ---
 framework: visionOS
-title: "What's new in visionOS"
-session: WWDC25-10101
+title: "What's new in visionOS 26"
+session: WWDC25-317
 year: 2025
 applies_to: visionOS 26+
 status: reference-only

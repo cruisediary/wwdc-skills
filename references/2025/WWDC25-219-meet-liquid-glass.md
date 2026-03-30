@@ -1,7 +1,7 @@
 ---
 framework: Liquid Glass
-title: "Elevate your app with fluid visuals"
-session: WWDC25-10150
+title: "Meet Liquid Glass"
+session: WWDC25-219
 year: 2025
 applies_to: iOS 26+
 status: reference-only
@@ -15,6 +15,14 @@ related:
 # Liquid Glass — Elevate Your App with Fluid Visuals (WWDC25)
 
 This session is the primary guide for adopting Liquid Glass in custom app surfaces. It covers when to use `GlassEffect`, how to layer glass with content, tinting strategies, and performance considerations. The canonical reference is `canonical/liquid-glass.md`; this file records the session-specific framing.
+
+## What changed and why
+
+iOS 26 introduced Liquid Glass as a new system material that replaces the static blur of `UIVisualEffectView` with a physically-inspired surface that refracts, tints, and shadows dynamically based on the content behind it. The change reflects a design philosophy shift toward depth and fluidity across system chrome, and `.glassEffect()` is the developer-facing API that brings that same material to custom app surfaces.
+
+## Mental model
+
+Think of Liquid Glass as a physical pane of glass floating above your content: it bends the content behind it at its edges (refraction), picks up color from that content (adaptive tinting), and casts a soft shadow to communicate elevation. Your job as a developer is to identify surfaces that genuinely float — controls, overlaid panels, action bars — and apply `.glassEffect()` there, letting the material handle all the visual adaptation. Overuse collapses the sense of depth the material is designed to create.
 
 ## Concept
 

@@ -15,7 +15,7 @@ related:
 
 `Transferable` is a Swift protocol that lets your types participate in share sheets, drag-and-drop, copy-paste, and the Clipboard — replacing `UIActivityItemSource` and `NSItemProvider` wrappers.
 
-## Core protocol
+## Quick start
 
 ```swift
 public protocol Transferable {
@@ -28,7 +28,7 @@ public protocol Transferable {
 
 `String`, `Data`, `URL`, `Image`, and `AttributedString` already conform to `Transferable`.
 
-## Representation types
+## Key APIs
 
 ### CodableRepresentation — for Codable types
 
@@ -106,7 +106,7 @@ ShareLink(
 )
 ```
 
-## Drag-and-drop
+## Common patterns
 
 ```swift
 // Drag source
@@ -123,7 +123,7 @@ List {
 }
 ```
 
-## Compatibility notes
+## Gotchas
 
 - `Transferable`, `ShareLink`, `draggable`, `dropDestination` require iOS 16+ / macOS 13+
 - `CodableRepresentation` requires a declared UTType (exported in Info.plist or via `UTType(exportedAs:)`)

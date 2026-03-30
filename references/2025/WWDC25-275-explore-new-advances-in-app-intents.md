@@ -1,7 +1,7 @@
 ---
 framework: App Intents
-title: "What's new in App Intents"
-session: WWDC25-10134
+title: "Explore new advances in App Intents"
+session: WWDC25-275
 year: 2025
 applies_to: iOS 26+
 status: reference-only

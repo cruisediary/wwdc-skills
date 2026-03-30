@@ -6,7 +6,7 @@ year: 2022
 applies_to: iOS 16+
 status: reference-only
 superseded_by: null
-shape: migration
+shape: guide-first
 related: []
 ---
 
@@ -14,7 +14,7 @@ related: []
 
 iOS 16 brought several new UIKit components and enhancements: a native calendar picker view, improved sheet presentation detents, list separator customisation, and a paste control.
 
-## What's new
+## What changed and why
 
 - `UICalendarView` — fully customisable calendar picker with multi-date and range selection
 - `UISheetPresentationController` detents — custom fractional and absolute detents, not just `.medium`/`.large`
@@ -25,6 +25,10 @@ iOS 16 brought several new UIKit components and enhancements: a native calendar 
 - `UIPageControl` with custom indicator images
 - `UIFindInteraction` — in-app find-and-replace (like Safari)
 - Stage Manager awareness APIs for macOS / iPadOS 16
+
+## Mental model
+
+iOS 16's UIKit additions are best understood as filling concrete gaps in everyday app patterns: a first-party calendar picker, finer-grained sheet heights, per-cell separator control, and a privacy-aware paste path. Rather than a sweeping architectural change, each API replaces a common workaround — custom date pickers, hardcoded detent math, separator hacks, and pasteboard permission banners — with an official, system-consistent equivalent.
 
 ## Key code examples
 
@@ -73,7 +77,7 @@ pasteControl.target = self   // Must implement UIPasteConfigurationSupporting
 view.addSubview(pasteControl)
 ```
 
-## Migration steps
+## Adopting this pattern
 
 1. Replace custom calendar pickers (date wheels, third-party) with `UICalendarView` on iOS 16+
 2. Replace hardcoded `.medium`/`.large` sheet detents with `Detent.custom` for precise heights

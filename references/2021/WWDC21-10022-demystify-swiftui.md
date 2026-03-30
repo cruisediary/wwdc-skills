@@ -15,13 +15,13 @@ related:
 
 Explains the three core concepts SwiftUI uses internally to decide what to render and when to update: **identity**, **lifetime**, and **dependencies**.
 
+## What changed and why
+
+WWDC21 formally documented SwiftUI's internal decision model for the first time, giving developers a conceptual vocabulary — identity, lifetime, and dependencies — to reason about unexpected re-renders and state bugs. Prior to this session, developers had to infer these rules from observed behavior; this session made them explicit and actionable.
+
 ## Mental model
 
-```
-Identity   — is this the same view or a different one?
-Lifetime   — how long does this view (and its state) live?
-Dependency — what data does this view read, and when should it redraw?
-```
+Think of SwiftUI as a diffing engine that tracks three things for every view: whether it is the same view across updates (identity), how long its state persists (lifetime), and which data changes should trigger a redraw (dependencies). Identity is the foundation — get it wrong and lifetime and dependencies break in turn, causing mysterious state resets or unnecessary renders.
 
 ## Identity
 

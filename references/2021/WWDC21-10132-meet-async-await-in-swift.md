@@ -15,7 +15,7 @@ related:
 
 Introduced the `async`/`await` syntax in Swift 5.5, replacing completion-handler patterns with linear, readable asynchronous code.
 
-## Core concepts
+## Quick start
 
 - `async func` — declares a function that can suspend; caller must `await` it
 - `await` — marks a suspension point; the thread is freed until the call resumes
@@ -68,7 +68,7 @@ func fetchDataThrowing() async throws -> Data {
 }
 ```
 
-## Before / After
+## Common patterns
 
 **Before (nested completion handlers):**
 ```swift
@@ -98,7 +98,7 @@ func loadUserAvatar(id: String) async -> UIImage? {
 4. Wrap legacy callback-only APIs with `withCheckedContinuation` or `withCheckedThrowingContinuation`
 5. Replace `viewDidLoad` / `viewWillAppear` async kicks with `.task { }` modifier in SwiftUI or `Task { }` in UIKit
 
-## Compatibility notes
+## Gotchas
 
 - Requires iOS 15+, macOS 12+, Xcode 13+
 - `async`/`await` is a compiler transformation — no runtime changes to threads

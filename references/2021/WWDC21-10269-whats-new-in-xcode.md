@@ -6,7 +6,7 @@ year: 2021
 applies_to: iOS 15+
 status: reference-only
 superseded_by: null
-shape: migration
+shape: guide-first
 related: []
 ---
 
@@ -14,7 +14,7 @@ related: []
 
 Xcode 13 additions: Swift Package Collections, source control improvements (pull request review in Xcode), Vim keybindings, column breakpoints, and Xcode Cloud integration.
 
-## What's new
+## What changed and why
 
 - **Swift Package Collections** — curated, shareable lists of Swift packages (JSON feed format)
 - **Source control — pull request review** — view, comment on, and approve pull requests from GitHub/Bitbucket/GitLab directly in Xcode
@@ -24,6 +24,10 @@ Xcode 13 additions: Swift Package Collections, source control improvements (pull
 - **Improved test results** — richer test result bundles with video, screenshots, and diagnostics
 - **`#available` code completion** — Xcode suggests platform/version combinations
 - **Improved Swift Package Manager** — local package overrides, build tool plugins (preview)
+
+## Mental model
+
+Xcode 13 extended the IDE outward in two directions: inward to the Swift concurrency model (column breakpoints, richer diagnostics) and outward to the team workflow (PR review, Xcode Cloud CI). Think of this release as Xcode evolving from a solo-developer tool into a team-facing platform — package collections, cloud CI, and in-editor PR review all reduce the number of context switches to external tools.
 
 ## Key workflows
 
@@ -88,7 +92,7 @@ Test Navigator → Click a failed test
   → Download .xcresult bundle for offline analysis
 ```
 
-## Migration steps
+## Adopting this pattern
 
 1. Evaluate adding a Swift Package Collection URL for your team's internal packages — reduces friction compared to individual package URLs
 2. Connect GitHub/Bitbucket/GitLab in Preferences → Accounts to enable PR review in Xcode

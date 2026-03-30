@@ -1,7 +1,7 @@
 ---
 framework: Swift Concurrency
-title: "Adopt default actor isolation"
-session: WWDC25-10145
+title: "Embracing Swift concurrency"
+session: WWDC25-268
 year: 2025
 applies_to: iOS 26+
 status: reference-only
@@ -10,13 +10,21 @@ shape: guide-first
 related:
   - canonical/swift-concurrency.md
   - 2025/swift-concurrency.md
-  - 2025/WWDC25-10131-whats-new-in-swift.md
+  - 2025/WWDC25-245-whats-new-in-swift.md
   - 2024/WWDC24-10169-migrate-your-app-to-swift-6.md
 ---
 
 # Swift Concurrency — Adopt Default Actor Isolation (WWDC25)
 
 This session provides a step-by-step guide for migrating existing codebases to Swift 6.2's default `@MainActor` isolation model, removing redundant annotations and leveraging `nonisolated` for background work.
+
+## What changed and why
+
+Swift 6.2 introduced a more approachable concurrency model by making `@MainActor` isolation implicit for types conforming to main-actor protocols like `View` and `UIViewController`, removing the need for boilerplate annotations that developers had added during the Swift 6 migration. The change acknowledges that most app code naturally belongs on the main actor, and `nonisolated` is the explicit opt-out for the minority of code that should run on a background executor.
+
+## Mental model
+
+Think of Swift 6.2's model as "main actor by default, opt out where needed": if a type conforms to a protocol that is already `@MainActor` (like `View`), every method and property is implicitly main-actor-isolated without any annotation. The `nonisolated` keyword is the escape hatch for pure logic that has no UI dependencies and can safely run on any thread. The migration workflow is to remove redundant annotations that the compiler no longer needs, then add `nonisolated` to the methods that genuinely should not touch the main actor.
 
 ## Concept
 

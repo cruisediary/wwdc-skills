@@ -15,6 +15,14 @@ related:
 
 Advanced customisation of Swift Charts: custom axes, annotations, scrollable charts, and accessibility.
 
+## What changed and why
+
+This companion session to the introductory Swift Charts talk focuses on going beyond default styling: custom axis labels, per-mark annotations, scrollable domains, and plot area backgrounds. These APIs address the gap between "good enough for a demo" and "production-quality chart" by giving developers explicit control over every visual layer without dropping out of the declarative model.
+
+## Mental model
+
+Swift Charts is a declarative layer system: you compose marks (bars, lines, points) by binding data values to visual channels (x, y, foreground), and the framework resolves the scale, axes, and layout automatically. Customisation is additive — `AxisMarks`, `.annotation`, and `.chartPlotStyle` all modify specific layers of that resolved chart without requiring you to redraw the whole thing from scratch. Think of it like CSS on top of an auto-layout engine: the defaults handle 80% of cases, and modifiers let you surgically override the remaining 20%.
+
 ## Custom axes
 
 ```swift

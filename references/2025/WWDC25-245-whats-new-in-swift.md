@@ -1,7 +1,7 @@
 ---
 framework: Swift
 title: "What's new in Swift"
-session: WWDC25-10131
+session: WWDC25-245
 year: 2025
 applies_to: iOS 26+
 status: reference-only

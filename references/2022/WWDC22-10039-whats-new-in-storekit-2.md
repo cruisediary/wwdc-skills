@@ -6,7 +6,7 @@ year: 2022
 applies_to: iOS 16+
 status: reference-only
 superseded_by: null
-shape: migration
+shape: guide-first
 related: []
 ---
 
@@ -14,7 +14,7 @@ related: []
 
 iOS 16 and Xcode 14 brought improvements to StoreKit 2's in-app purchase APIs and the StoreKit testing framework, enabling more thorough test coverage of purchase flows.
 
-## What's new in StoreKit 2
+## What changed and why in StoreKit 2
 
 - `Transaction.currentEntitlements` — async sequence of all active entitlements
 - `Product.SubscriptionInfo.Status` — detailed subscription state (active, expired, in billing retry, etc.)
@@ -22,11 +22,15 @@ iOS 16 and Xcode 14 brought improvements to StoreKit 2's in-app purchase APIs an
 - `Transaction.unfinished` — async sequence of transactions awaiting `finish()`
 - Improved `Product.purchase(options:)` with additional purchase options
 
-## What's new in StoreKit Testing
+## What changed and why in StoreKit Testing
 
 - `StoreKitTest` framework — `SKTestSession` for controlling the test environment
 - Control subscription renewal rate, trigger billing issues, approve/decline transactions in tests
 - `SKTestTransaction` — inspect and manage simulated transactions
+
+## Mental model
+
+StoreKit 2 replaces the delegate-and-callback pattern of SKPaymentQueue with async sequences: you iterate `Transaction.updates` to receive live purchase events and `Transaction.currentEntitlements` to reconstruct the full entitlement state at any point. Think of entitlements as a stream, not a snapshot — your app should be able to rebuild its access gates from that sequence at launch, after a restore, or after a subscription status change. The StoreKit testing framework mirrors this model by giving tests programmatic control over the same async sequences.
 
 ## Key testing APIs
 
@@ -89,7 +93,7 @@ for await result in Transaction.currentEntitlements {
 }
 ```
 
-## Migration steps
+## Adopting this pattern
 
 1. Replace `SKPaymentQueue` and `SKPaymentTransactionObserver` with StoreKit 2 `Transaction.updates` listener
 2. Replace receipt validation with `Transaction.currentEntitlements` iteration

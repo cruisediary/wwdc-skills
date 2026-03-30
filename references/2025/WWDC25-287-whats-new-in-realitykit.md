@@ -1,7 +1,7 @@
 ---
 framework: RealityKit
 title: "What's new in RealityKit"
-session: WWDC25-10103
+session: WWDC25-287
 year: 2025
 applies_to: visionOS 26+
 status: reference-only

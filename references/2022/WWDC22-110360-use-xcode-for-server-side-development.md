@@ -14,14 +14,18 @@ related: []
 
 This session demonstrates using Xcode 14 to build, debug, and document server-side Swift applications, including integration with the Swift Package Index and DocC for server projects.
 
-## What's covered
+## What changed and why
 
 - **Swift Package Index** — discovering and adding server-side packages (Vapor, Hummingbird, etc.) directly from Xcode's package search
 - **Debugging server-side Swift** — attaching the Xcode debugger to a running server process, setting breakpoints in request handlers
 - **DocC for server projects** — generating and hosting documentation for Swift server frameworks and libraries
 - **Xcode Cloud for server** — CI/CD pipelines that build and test Linux-targeted Swift packages
 
-## Key workflows
+## Mental model
+
+The mental shift for server-side Swift in Xcode is treating a Swift package executable as your deployment unit rather than an app bundle: the package is the project, SPM replaces CocoaPods/Carthage, and the binary runs on Linux rather than a device. Xcode's debugger, DocC, and Xcode Cloud work the same way they do for app targets — the difference is that platform-specific frameworks (UIKit, AppKit) are absent, and the runtime is the open-source Swift toolchain on Linux.
+
+## Usage example
 
 ### Adding server packages via Xcode
 

@@ -51,13 +51,8 @@ tree?.position.y += 0.1
 ```
 
 **Using behaviors (trigger/action defined in RC Pro):**
-```swift
-// Behaviors authored in RC Pro fire automatically when the scene is added to a RealityView.
-// No Swift code needed for simple tap-to-animate behaviors.
-// For programmatic triggers:
-garden.components[BehaviorComponent.self]?.triggers["OnLaunch"]?.fire()
-// Note: BehaviorComponent API — verify exact type names in current SDK
-```
+
+Behaviors authored in Reality Composer Pro fire automatically when a scene loads — no Swift code required for simple tap-to-animate flows. For programmatic behavior triggering, consult the RealityKit `BehaviorComponent` documentation in the current SDK, as the exact API surface varies by RealityKit version.
 
 **Accessing a particle emitter component:**
 ```swift

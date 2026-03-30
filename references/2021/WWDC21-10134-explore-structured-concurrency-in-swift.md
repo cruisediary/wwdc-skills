@@ -15,6 +15,10 @@ related:
 
 Covers structured concurrency — `async let`, `TaskGroup`, task trees, cancellation propagation, and task priorities.
 
+## What changed and why
+
+Before Swift 5.5, concurrent work required manually managing `DispatchGroup`, `OperationQueue`, or callback chains, making it easy to leak tasks, forget to call completion handlers, or fail to propagate cancellation. Structured concurrency introduces a task tree where child tasks are always scoped to their parent — the parent cannot return until all children finish, errors propagate upward automatically, and cancellation flows downward without extra code. This eliminates an entire class of async lifetime bugs that were previously invisible to the compiler.
+
 ## Mental model
 
 ```
@@ -24,7 +28,7 @@ Cancellation flows down the tree
 Errors propagate up the tree
 ```
 
-## Key APIs
+## Usage example
 
 ### async let — static concurrency
 
@@ -113,7 +117,7 @@ Task.detached(priority: .background) {
 }
 ```
 
-## Structured vs unstructured
+## Adopting this pattern
 
 | | Structured (`async let`, `TaskGroup`) | Unstructured (`Task`, `Task.detached`) |
 |---|---|---|

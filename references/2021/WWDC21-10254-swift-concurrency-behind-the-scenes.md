@@ -15,6 +15,14 @@ related:
 
 Deep-dive into the Swift concurrency runtime — the cooperative thread pool, continuation semantics, how actors are scheduled, and how priority propagation works.
 
+## What changed and why
+
+GCD's thread-per-task model causes thread explosion under load — each blocked thread holds ~1 MB of stack and requires OS context switches to schedule, making high concurrency expensive. Swift's cooperative thread pool caps threads at the number of CPU cores and never blocks them; tasks instead suspend at `await` points and resume on whichever core is free, reducing memory and scheduling overhead by orders of magnitude. This fundamental runtime shift also enables the compiler to enforce actor isolation and priority donation, guarantees that were impossible to provide on top of GCD.
+
+## Mental model
+
+Think of the Swift concurrency runtime as a fixed-size work queue — at most one thread per CPU core — where tasks voluntarily yield at `await` points rather than blocking threads. A continuation is the saved bookmark of a suspended task; when the awaited work completes, that bookmark is handed back to an executor, which picks it up on whichever thread is free. Actors act as serial executors within this pool, ensuring their work runs one item at a time without ever blocking a thread.
+
 ## Cooperative thread pool
 
 - Swift creates a thread pool with **at most one thread per CPU core** (by default)

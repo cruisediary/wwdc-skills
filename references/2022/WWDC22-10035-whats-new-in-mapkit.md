@@ -6,7 +6,7 @@ year: 2022
 applies_to: iOS 16+
 status: reference-only
 superseded_by: null
-shape: migration
+shape: guide-first
 related: []
 ---
 
@@ -14,7 +14,7 @@ related: []
 
 iOS 16 introduced Look Around (street-level imagery), new map configurations, and improved MapKit APIs for hybrid and satellite views.
 
-## What's new
+## What changed and why
 
 - **Look Around** — street-level imagery, similar to Google Street View
   - `MKLookAroundSceneRequest` — fetch a Look Around scene for a coordinate
@@ -25,6 +25,10 @@ iOS 16 introduced Look Around (street-level imagery), new map configurations, an
   - `MKHybridMapConfiguration` — satellite imagery with road overlay
   - `MKImageryMapConfiguration` — pure satellite/aerial imagery
 - **`MKMapView.preferredConfiguration`** — replaces `mapType` property
+
+## Mental model
+
+Think of MapKit's iOS 16 changes as replacing a flat enum of map modes (`mapType`) with a configuration object hierarchy — each subclass carries its own rendering options, making it easy to extend in future OS releases without adding more enum cases. Look Around follows the same async-request pattern as network calls: you request a scene for a coordinate, handle availability, then hand the result to a view controller or snapshotter.
 
 ## Key code examples
 
@@ -75,7 +79,7 @@ mapView.preferredConfiguration = hybridConfig
 mapView.preferredConfiguration = MKImageryMapConfiguration()
 ```
 
-## Migration steps
+## Adopting this pattern
 
 1. Replace `mapView.mapType = .standard` with `mapView.preferredConfiguration = MKStandardMapConfiguration()`
 2. Replace `.hybrid` with `MKHybridMapConfiguration()`

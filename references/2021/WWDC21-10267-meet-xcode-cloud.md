@@ -14,14 +14,14 @@ related: []
 
 Xcode Cloud is Apple's CI/CD service integrated into Xcode and App Store Connect. It builds, tests, and distributes apps automatically on Apple silicon cloud infrastructure.
 
-## Core concepts
+## Key APIs
 
 - **Workflow** — a named CI/CD pipeline with a start condition, environment, actions, and post-actions
 - **Start condition** — what triggers the workflow: branch push, pull request, tag, or scheduled time
 - **Action** — a step in the workflow: Build, Test, Analyse, Archive
 - **Post-action** — what to do after all actions pass: notify via email/Slack, deploy to TestFlight, deploy to App Store Connect
 
-## Workflow configuration (in Xcode)
+## Quick start
 
 ```
 Xcode → Product → Xcode Cloud → Create Workflow
@@ -87,7 +87,7 @@ App Store Connect → Apps → [Your App] → Xcode Cloud
   → Webhook URL: configured per workflow for Slack, GitHub, Jira, etc.
 ```
 
-## TestFlight deployment
+## Common patterns
 
 ```
 Post-Action: TestFlight Internal Testing
@@ -109,7 +109,7 @@ $CI_BRANCH             # git branch name
 $CI_PULL_REQUEST_NUMBER# PR number, if triggered by a PR
 ```
 
-## Compatibility notes
+## Gotchas
 
 - Xcode Cloud requires Xcode 13+ and an active Apple Developer Program membership
 - Source control: supports GitHub, Bitbucket, GitLab (connected via App Store Connect)

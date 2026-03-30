@@ -14,7 +14,13 @@ related: []
 
 WeatherKit provides Apple's weather data to apps, replacing the need for third-party weather APIs. It requires an Apple Developer entitlement and attribution in the UI.
 
-## Core APIs
+## Quick start
+
+- Import `WeatherKit` and `CoreLocation`; call `WeatherService.shared.weather(for:)` with a `CLLocation` to fetch all weather data at once
+- Fetch only specific datasets (`.current`, `.daily`, `.hourly`) using the `including:` overload to reduce latency
+- All `WeatherService` calls are `async throws`; call from an async context or a `Task { }`
+
+## Key APIs
 
 ### WeatherService
 
@@ -84,7 +90,13 @@ let (current, daily) = try await weatherService.weather(
 )
 ```
 
-## Entitlement requirement
+## Common patterns
+
+- Fetch current + daily in one call using the `including:` tuple overload to avoid two network requests
+- Display `current.condition` (a `WeatherCondition` enum) alongside `current.temperature` for a minimal weather widget
+- Guard on `minuteForecast != nil` before showing precipitation timeline — only available in supported regions
+
+## Gotchas
 
 WeatherKit requires the **WeatherKit** capability in Xcode and an active App ID with WeatherKit enabled on the Apple Developer portal. Without the entitlement, all requests return an error.
 

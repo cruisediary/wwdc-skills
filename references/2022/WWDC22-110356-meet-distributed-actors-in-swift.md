@@ -15,7 +15,7 @@ related:
 
 Distributed actors extend Swift's actor model to support cross-process and cross-network communication, allowing actor calls to transparently traverse process or machine boundaries.
 
-## Core concepts
+## What changed and why
 
 - `distributed actor` — an actor that may exist in another process or on another machine
 - `DistributedActorSystem` protocol — pluggable transport layer (network, IPC, in-process)
@@ -24,7 +24,11 @@ Distributed actors extend Swift's actor model to support cross-process and cross
 - `@Resolvable` — macro (or protocol-level mechanism) to resolve a remote actor reference from an ID
 - Calls to distributed functions are `throws` because the remote call can fail for transport reasons
 
-## Key APIs
+## Mental model
+
+A distributed actor is a local actor that might not be local: you call its methods with `await try` as if it were in-process, but the `distributed actor` keyword tells the compiler that those calls may cross a process or network boundary. The `DistributedActorSystem` is the pluggable transport — it handles serialization, routing, and failure delivery transparently, so call-site code is identical regardless of whether the actor lives in the same process or on a remote server. The main mental shift is treating network failures as first-class return-path events (via `throws`) rather than callbacks or error handlers.
+
+## Usage example
 
 ```swift
 // Define a distributed actor
@@ -63,7 +67,7 @@ protocol DistributedActorSystem {
 - Apple ships `LocalTestingDistributedActorSystem` for unit testing distributed actors in-process
 - Third-party systems (e.g., Swift Distributed Actors cluster library) provide real network transport
 
-## Design patterns
+## Adopting this pattern
 
 - **Location transparency** — caller code is identical whether actor is local or remote
 - **Explicit failure surface** — all distributed calls are `throws`, making network failures visible at the type level

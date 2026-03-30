@@ -1,7 +1,7 @@
 ---
 framework: Xcode
-title: "What's new in Xcode"
-session: WWDC25-10135
+title: "What's new in Xcode 26"
+session: WWDC25-247
 year: 2025
 applies_to: iOS 26+
 status: reference-only
