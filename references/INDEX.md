@@ -145,3 +145,10 @@ All paths are relative to the `references/` directory.
 | 2022/WWDC22-10126-whats-new-in-arkit.md | What's new in ARKit | ARKit | iOS 16+ | reference-only | WWDC22: ARKit 6 — 4K video capture, motion capture improvements, ARBodyTrackingConfiguration |
 | 2022/WWDC22-10076-bring-your-ios-app-to-the-mac.md | Bring your iOS app to the Mac | SwiftUI | macOS 13+ | reference-only | WWDC22: Mac Catalyst vs native Mac SwiftUI, windowStyle, Menu, CommandMenu, Settings |
 | 2022/WWDC22-10152-build-accessible-apps-with-swiftui-and-uikit.md | Build accessible apps with SwiftUI and UIKit | Accessibility | iOS 16+ | reference-only | WWDC22: AccessibilityRotorEntry, accessibilityCustomContent, VoiceOver customisation |
+| 2021/WWDC21-10132-meet-async-await-in-swift.md | Meet async/await in Swift | Swift Concurrency | iOS 15+ | reference-only | WWDC21: async func, await, async let, withCheckedContinuation, migration from completion handlers |
+| 2021/WWDC21-10134-explore-structured-concurrency-in-swift.md | Explore structured concurrency in Swift | Swift Concurrency | iOS 15+ | reference-only | WWDC21: async let for parallel work, withTaskGroup, withThrowingTaskGroup, Task.isCancelled, cancellation propagation |
+| 2021/WWDC21-10133-protect-mutable-state-with-swift-actors.md | Protect mutable state with Swift actors | Swift Concurrency | iOS 15+ | reference-only | WWDC21: actor keyword, actor isolation, cross-actor await, @MainActor, nonisolated, reentrancy |
+| 2021/WWDC21-10254-swift-concurrency-behind-the-scenes.md | Swift concurrency: Behind the scenes | Swift Concurrency | iOS 15+ | reference-only | WWDC21: cooperative thread pool, continuation semantics, actor execution model, priority propagation |
+| 2021/WWDC21-10095-use-async-await-with-urlsession.md | Use async/await with URLSession | Swift Concurrency | iOS 15+ | reference-only | WWDC21: URLSession.data(from:), URLSession.bytes(from:) streaming, upload, download async APIs |
+| 2021/WWDC21-10058-meet-asyncsequence.md | Meet AsyncSequence | Swift Concurrency | iOS 15+ | reference-only | WWDC21: AsyncSequence protocol, for await in, AsyncStream, makeAsyncIterator, map/filter/prefix operators |
+
