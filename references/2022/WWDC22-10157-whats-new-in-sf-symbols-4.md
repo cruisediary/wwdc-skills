@@ -95,6 +95,63 @@ VStack {
 .symbolVariant(.fill)
 ```
 
+## Before / After
+
+**Variable color — signal/volume indicators:**
+
+Before (iOS 15 and earlier — multiple symbols or manual layer swapping):
+```swift
+// No variable color API; required switching between symbol names manually
+// e.g. "wifi", "wifi.1", "wifi.2", "wifi.3" based on signal level
+let symbolName = signalLevel > 0.66 ? "wifi" : signalLevel > 0.33 ? "wifi.2" : "wifi.1"
+Image(systemName: symbolName)
+```
+
+After (iOS 16+):
+```swift
+Image(systemName: "wifi", variableValue: signalStrength)
+    .foregroundStyle(.blue)
+// signalStrength: Double in 0.0...1.0
+```
+
+**Multi-color symbols:**
+
+Before — foregroundColor with single color only:
+```swift
+Image(systemName: "cloud.sun.fill")
+    .foregroundColor(.orange)
+// No way to color individual layers differently
+```
+
+After (iOS 15+ for rendering modes, iOS 16 for full palette support):
+```swift
+// Hierarchical
+Image(systemName: "cloud.sun.fill")
+    .symbolRenderingMode(.hierarchical)
+    .foregroundStyle(.orange)
+
+// Palette — explicit color per layer
+Image(systemName: "cloud.sun.fill")
+    .symbolRenderingMode(.palette)
+    .foregroundStyle(.gray, .yellow)
+```
+
+**Symbol variants:**
+
+Before — hardcoded variant suffix in symbol name string:
+```swift
+Image(systemName: "heart.fill")
+Image(systemName: "bell.slash")
+Image(systemName: "person.circle.fill")
+```
+
+After (iOS 15+):
+```swift
+Image(systemName: "heart").symbolVariant(.fill)
+Image(systemName: "bell").symbolVariant(.slash)
+Image(systemName: "person").symbolVariant(.circle.fill)
+```
+
 ## Migration steps
 
 1. Replace `Image(systemName: "wifi")` with `Image(systemName: "wifi", variableValue: level)` for signal/volume-type indicators

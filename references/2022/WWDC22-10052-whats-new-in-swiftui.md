@@ -47,9 +47,22 @@ SwiftUI iOS 16 / macOS 13 introduced overhauled navigation, native charts, new s
 - `Table` on iPad (column sorting, multi-select)
 - `SwiftUI Charts` accessibility automatic
 
-## Key code examples
+## Before / After
 
-**NavigationStack with path:**
+**Navigation — push stack:**
+
+Before (iOS 15 and earlier):
+```swift
+NavigationView {
+    List(items) { item in
+        NavigationLink(destination: DetailView(item: item)) {
+            Text(item.title)
+        }
+    }
+}
+```
+
+After (iOS 16+):
 ```swift
 @State private var path = NavigationPath()
 
@@ -63,7 +76,14 @@ NavigationStack(path: $path) {
 }
 ```
 
-**Half-sheet:**
+**Half-sheet presentation:**
+
+Before (iOS 15 and earlier — no native half-sheet; required UIKit workaround):
+```swift
+// No SwiftUI API; required wrapping UISheetPresentationController manually
+```
+
+After (iOS 16+):
 ```swift
 .sheet(isPresented: $showSheet) {
     SheetContent()
@@ -72,21 +92,26 @@ NavigationStack(path: $path) {
 }
 ```
 
-**ShareLink:**
+**Sharing:**
+
+Before:
+```swift
+// Required UIActivityViewController wrapped in UIViewControllerRepresentable
+```
+
+After (iOS 16+):
 ```swift
 ShareLink(item: photoURL, preview: SharePreview("My Photo", image: Image("photo")))
 ```
 
-**ImageRenderer:**
+**Custom layout:**
+
+Before — alignment guides / geometry reader hacks:
 ```swift
-let renderer = ImageRenderer(content: MyChartView())
-renderer.scale = displayScale
-if let image = renderer.uiImage {
-    // use image
-}
+// No composable layout protocol; relied on GeometryReader + preference keys
 ```
 
-**Layout protocol:**
+After (iOS 16+):
 ```swift
 struct MyEqualWidthHStack: Layout {
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize { ... }
