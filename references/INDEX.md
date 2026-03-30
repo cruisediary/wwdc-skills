@@ -49,6 +49,12 @@ All paths are relative to the `references/` directory.
 | 2024/WWDC24-10149-work-with-windows-in-swiftui.md | Work with windows in SwiftUI | SwiftUI | iOS 18+ | reference-only | WWDC24: openWindow, WindowGroup sizing, dismissWindow on macOS/iPadOS |
 | 2024/WWDC24-10151-create-custom-visual-effects-with-swiftui.md | Create custom visual effects with SwiftUI | SwiftUI | iOS 18+ | reference-only | WWDC24: MeshGradient, visualEffect modifier, scrollTransition |
 | 2024/WWDC24-10150-swiftui-essentials.md | SwiftUI essentials | SwiftUI | iOS 18+ | reference-only | WWDC24: foundational concepts — View, State, Binding, Environment, Observable |
+| 2024/WWDC24-10137-whats-new-in-swiftdata.md | What's new in SwiftData | SwiftData | iOS 18+ | reference-only | WWDC24: #Index, #Unique macros, custom DataStore, history tracking |
+| 2024/WWDC24-10138-create-a-custom-data-store-with-swiftdata.md | Create a custom data store with SwiftData | SwiftData | iOS 18+ | reference-only | WWDC24: DataStore protocol, custom persistence backends for ModelContainer |
+| 2024/WWDC24-10182-track-model-changes-with-swiftdata-history.md | Track model changes with SwiftData history | SwiftData | iOS 18+ | reference-only | WWDC24: ModelContext.fetchHistory, HistoryToken, change tracking |
+| 2024/WWDC24-10179-meet-swift-testing.md | Meet Swift Testing | Swift Testing | iOS 18+ | reference-only | WWDC24: @Test, @Suite, #expect, #require introduction |
+| 2024/WWDC24-10195-go-further-with-swift-testing.md | Go further with Swift Testing | Swift Testing | iOS 18+ | reference-only | WWDC24: parameterized tests, tags, custom traits |
+| 2024/WWDC24-10196-migrate-your-tests-from-xctest.md | Migrate your tests from XCTest | Swift Testing | iOS 18+ | reference-only | WWDC24: XCTestCase to @Suite migration guide |
 | 2025/liquid-glass.md | — | Liquid Glass | iOS 26+ | reference-only | WWDC25: Liquid Glass material introduction |
 | 2025/swift-concurrency.md | — | Swift Concurrency | iOS 26+ | reference-only | WWDC25: Default actor isolation, Swift 6 concurrency updates |
 | 2025/webview.md | — | WebView | iOS 26+ | reference-only | WWDC25: WebView SwiftUI integration |
