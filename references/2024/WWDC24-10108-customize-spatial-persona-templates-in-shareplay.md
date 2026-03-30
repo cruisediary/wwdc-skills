@@ -25,8 +25,10 @@ import RealityKit
 struct SideBySideTemplate: SpatialTemplate {
     // Declare participant seats in the shared coordinate space
     var elements: [any SpatialTemplateElement] {
-        SpatialTemplateSeatElement(position: .init(x: -0.6, y: 0, z: 0))
-        SpatialTemplateSeatElement(position: .init(x:  0.6, y: 0, z: 0))
+        return [
+            SpatialTemplateSeatElement(position: .init(x: -0.6, y: 0, z: 0)),
+            SpatialTemplateSeatElement(position: .init(x:  0.6, y: 0, z: 0))
+        ]
     }
 }
 
@@ -35,13 +37,11 @@ struct DrawingActivity: GroupActivity {
     static let activityIdentifier = "com.example.drawing"
 
     var metadata: GroupActivityMetadata {
-        var meta = GroupActivityMetadata()
-        meta.title = "Collaborative Drawing"
-        meta.type = .generic
-        meta.spatialExperienceInfo = .init(
-            scene: .init(configuration: .init(template: SideBySideTemplate()))
-        )
-        return meta
+        var metadata = GroupActivityMetadata()
+        metadata.title = NSLocalizedString("Watch Together", comment: "")
+        // Configure spatial experience with a custom template
+        // Refer to GroupActivities docs for SpatialExperienceInfo initialization
+        return metadata
     }
 }
 
@@ -96,11 +96,12 @@ await coordinator.configure(config)
 
 **Converting shared coordinates to local RealityKit space:**
 ```swift
-// CoordinateSpaceMapping translates between participants' local spaces
+// Use CoordinateSpaceMapping to convert points between shared and local coordinate spaces
+// Exact API: refer to GroupActivities documentation for CoordinateSpaceMapping methods
 if let mapping = await coordinator.localParticipantState.coordinateSpaceMapping {
     let sharedPoint = SIMD3<Float>(0, 0, -1)  // 1 m in front in shared space
-    let localPoint = mapping.converting(sharedPoint, from: .shared, to: .local)
-    entity.position = localPoint
+    // Convert sharedPoint from the shared coordinate space to local space using mapping
+    // then assign to entity.position
 }
 ```
 

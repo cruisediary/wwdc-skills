@@ -18,7 +18,7 @@ RealityKit gains `PhysicsSimulationComponent`, expanded `MeshResource` APIs, an 
 ## What's new
 
 - **`PhysicsSimulationComponent`** — attaches a physics simulation context to an entity subtree, allowing isolated physics worlds within a scene; entities in a subtree share one physics simulation
-- **`MeshResource` generation APIs** — new static factories (`MeshResource.generateBox`, `MeshResource.generateSphere`, `MeshResource.generatePlane`) plus `MeshResource.generateAsync` for non-blocking mesh creation
+- **`MeshResource` generation APIs** — new static factories (`MeshResource.generateBox`, `MeshResource.generateSphere`, `MeshResource.generatePlane`) for synchronous mesh creation
 - **`InputTargetComponent` updates** — allows finer-grained input shapes via `InputTargetComponent(allowedInputTypes:)`, supporting `.indirect` (pinch), `.direct` (hand touch), and `.all`
 - **`PortalComponent`** — renders a child entity subtree through a portal surface; portal masks geometry so only what's "inside" the portal plane is visible from the outside
 - **`RealityView` improvements** — `make` and `update` closures receive an `RealityViewContent` with new `add(_:)`, `remove(_:)`, and `entities` accessors for managing entity lifetimes more precisely
@@ -48,14 +48,16 @@ box.components.set(PhysicsBodyComponent(massProperties: .default,
 simulationRoot.addChild(box)
 ```
 
-**Before (mesh generation — synchronous, blocks render thread):**
+**Mesh generation (synchronous factory):**
 ```swift
 let mesh = MeshResource.generateBox(size: 0.2)
 ```
 
-**After (async mesh generation):**
+**Mesh generation from a custom descriptor:**
 ```swift
-let mesh = try await MeshResource.generateAsync(.box(size: 0.2))
+var descriptor = MeshDescriptor()
+// ... fill descriptor ...
+let mesh = try MeshResource.generate(from: descriptor)
 ```
 
 **Before (InputTargetComponent — accepts all input):**
@@ -71,7 +73,7 @@ entity.components.set(InputTargetComponent(allowedInputTypes: .indirect))
 ## Migration steps
 
 1. Wrap entity subtrees that need independent physics into a parent with `PhysicsSimulationComponent()` — this prevents cross-scene physics interference
-2. Replace synchronous mesh generation calls with `generateAsync` variants to keep the main thread responsive during scene setup
+2. Use `MeshResource.generateBox`, `generateSphere`, or `MeshResource.generate(from:)` for mesh creation; wrap in a background `Task` if needed to avoid blocking the main thread
 3. Audit `InputTargetComponent` usages — explicitly set `allowedInputTypes` to `.indirect`, `.direct`, or `.all` rather than relying on the default
 4. Adopt `PortalComponent` for contained-scene effects (e.g., a window into a miniature world) instead of camera layer tricks
 5. Update `RealityView` `make` closures to use the new `content.add(_:)` / `content.remove(_:)` APIs for safer entity lifecycle management
@@ -79,6 +81,6 @@ entity.components.set(InputTargetComponent(allowedInputTypes: .indirect))
 ## Compatibility notes
 
 - `PhysicsSimulationComponent` and `PortalComponent` require visionOS 2+ / iOS 18+
-- `MeshResource.generateAsync` is visionOS 2+ and iOS 18+; use the synchronous overloads with a background `Task` for older targets
+- `MeshResource.generate(from:)` and the synchronous factory methods (`generateBox`, `generateSphere`, `generatePlane`) are available across visionOS and iOS; wrap in a background `Task` to avoid blocking the main thread when building large meshes
 - `InputTargetComponent(allowedInputTypes:)` initializer is new in visionOS 2; the zero-argument initializer remains available on visionOS 1
 - `RealityView` `update` closure improvements are source-compatible; no API removal in visionOS 1 builds

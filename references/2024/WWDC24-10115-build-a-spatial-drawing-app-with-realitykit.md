@@ -109,8 +109,8 @@ func isPinching(_ anchor: HandAnchor) -> Bool {
 // Pre-allocate with a maximum vertex count
 var descriptor = LowLevelMesh.Descriptor()
 // ... set attributes ...
-descriptor.vertexCapacity = 10_000
-descriptor.indexCapacity = 30_000
+descriptor.vertexCount = 10_000
+descriptor.indexCount = 30_000
 let mesh = try LowLevelMesh(descriptor: descriptor)
 
 // Each frame: write into the existing buffers

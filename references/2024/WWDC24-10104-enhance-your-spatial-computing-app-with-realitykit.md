@@ -101,11 +101,9 @@ RealityView { content, attachments in
     DragGesture()
         .targetedToAnyEntity()
         .onChanged { value in
-            value.entity.position = value.convert(
-                value.location3D,
-                from: .local,
-                to: value.entity.parent ?? value.entity
-            )
+            // Instead of: value.convert(value.location3D, from: .local, to: value.entity.parent ?? value.entity)
+            // Use scene coordinate space:
+            value.entity.position = value.convert(value.location3D, from: .local, to: .scene)
         }
 )
 ```
