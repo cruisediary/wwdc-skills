@@ -26,19 +26,20 @@ Read `references/INDEX.md`. All file paths in that file are relative to the `ref
 - If the source file doesn't exist in the repo: load only the canonical target file and explain the current approach
 - In migration mode: always produce a before/after diff response, ignoring the loaded file's `shape` field
 
-**Session ID mode** — triggers when the query contains a string matching the pattern `WWDC\d{2}-\d{5}` (e.g., `WWDC24-10179`):
+**Session ID mode** — check this before Year/session mode. Triggers when the query contains a string matching the pattern `WWDC\d{2}-\d{5}` (e.g., `WWDC24-10179`). Session IDs are handled exclusively here and never fall through to Year/session mode.
 - Scan INDEX.md for any row whose `File` path contains that session ID string
 - If found: load that file directly
 - If not found: respond "This session isn't covered yet in wwdc-skills." Do not fall through to other modes.
 
-**Year/session mode** — triggers if the query names a specific WWDC year or session ID (e.g., "WWDC23", "WWDC21-10132"):
-- If the query contains a session ID (e.g., "WWDC24-10137"), session IDs follow the format `WWDC{YY}-{5-digit-ID}`. Extract the year from the ID (e.g., `24` → `2024`). Use the query context or surrounding text to identify the framework name. If no framework can be identified from context, ask the user to clarify which framework they're asking about before loading any file. Once the framework is known, load `references/{year}/{framework}.md`.
+**Year/session mode** — triggers if the query names a specific WWDC year (e.g., "WWDC23", "WWDC24") or a named Apple framework alongside a year. Does not apply to bare session IDs — those are handled exclusively by Session ID mode above.
 - If a year is identified but no specific framework is named, list the key topics from INDEX.md rows for that year and ask the user which framework to focus on before loading any file.
 - If a framework is identified, load `references/{year}/{framework}.md`.
 
 **Session title mode** — triggers when the query contains words that closely match a `Title` column entry in INDEX.md (case-insensitive, partial match):
-- If one title matches: load that session file
-- If multiple titles match: prefer the most recent year; if same year and still tied, load both files and answer from both
+- Rows where `Title` is `—` (canonical files and framework-level year files) have no title to match against and are excluded from title matching entirely
+- Title matching applies only to session files — rows where `Title` is not `—`
+- If one titled session row matches: load that session file
+- If multiple titled session rows match: prefer the most recent year; if same year and still tied, load both files and answer from both
 - If no title matches: fall through to Current API mode
 
 **Current API mode** — default for all other queries:
