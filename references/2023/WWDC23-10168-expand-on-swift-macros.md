@@ -63,6 +63,9 @@ public struct AddAsyncMacro: PeerMacro {
 ```
 
 **Conformance macro:**
+
+> **Gotcha:** In the final Xcode 15 release, `ExtensionMacro` replaced `ConformanceMacro` as the preferred approach for adding protocol conformances. `ExtensionMacro` (`@attached(extension)`) is the idiomatic shipping API in Xcode 15 / Swift 5.9 because it can add both conformances and members together in a single extension. Prefer `ExtensionMacro` over `ConformanceMacro` in new code.
+
 ```swift
 @attached(conformance)
 public macro Equatable() =
@@ -85,7 +88,7 @@ public struct EquatableMacro: ConformanceMacro {
 public struct ModelMacro: MemberMacro {
     public static func expansion(
         of node: AttributeSyntax,
-        providingMembersOf declaration: some DeclGroupSyntaxProtocol,
+        providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         return [

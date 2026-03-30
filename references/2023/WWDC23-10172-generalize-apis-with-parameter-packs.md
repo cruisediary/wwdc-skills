@@ -52,13 +52,15 @@ printAll(42, "Swift", true)
 
 **Constrained pack — requiring Equatable:**
 ```swift
-func allEqual<each T: Equatable>(_ lhs: repeat each T, _ rhs: repeat each T) -> Bool {
-    // Uses repeat expression for element-wise comparison
-    // Returns true only if all pairs are equal
-    for pair in repeat (each lhs, each rhs) {
-        guard pair.0 == pair.1 else { return false }
-    }
-    return true
+// Checking equality across parameter packs (Swift 5.9)
+// Note: for-in over pack expansions is not supported in Swift 5.9.
+// Use recursive tuple comparison or constrain to Equatable+count checks.
+// A common pattern is to convert to arrays where the element count is known:
+func zip<each T, each U>(
+    _ first: repeat each T,
+    _ second: repeat each U
+) -> (repeat (each T, each U)) {
+    return (repeat (each first, each second))
 }
 ```
 
