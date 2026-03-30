@@ -51,10 +51,10 @@ struct PhotoSearchView: View {
 | `@AssistantIntent(schema:)` | Binds an `AppIntent` to an Apple-defined domain schema so Siri understands it without custom utterances |
 | `AssistantSchema` | Namespace of pre-defined domain schemas (`.photos`, `.mail`, `.browser`, `.files`, etc.) |
 | `SiriTipView` | SwiftUI view that displays the canonical Siri phrase for an intent, educating users |
-| `SiriTip` (UIKit) | UIKit equivalent of `SiriTipView` for non-SwiftUI hierarchies |
+| `SiriTipUIView` (UIKit) | UIKit view that displays the canonical Siri phrase for an intent; use `SiriTipUIView(intent:)` and add to the view hierarchy directly |
 | `AppEntity` | Protocol for domain objects Siri can reference (e.g., a photo, a contact) |
 | `@Parameter` | Declares an intent input that Siri can fill through voice or follow-up questions |
-| `IntentDonation` | Donates intent usage to SiriKit so it surfaces in Shortcuts suggestions |
+| `AppShortcutsProvider` | Conform to this protocol to expose shortcuts; App Intents handles donation automatically — no manual donation call needed |
 
 ## Common patterns
 
@@ -72,24 +72,14 @@ struct SendMailIntent: AppIntent {
     }
 }
 
-// Pattern 2: Donate an intent after the user performs the action in-app
-//            so Siri learns to suggest it proactively
-func userDidSearchPhotos(query: String) async {
-    let intent = SearchPhotosIntent()
-    intent.searchQuery = query
-    await IntentDonationManager.shared.donate(intent: intent)
-}
-
-// Pattern 3: UIKit — show a SiriTip in a view controller
-import Intents
+// Pattern 2: UIKit — show a SiriTip in a view controller
+import AppIntents
 
 class PhotoViewController: UIViewController {
-    let tip = SiriTip(intent: SearchPhotosIntent())
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        // tip.view is a UIView you add to your hierarchy
-        view.addSubview(tip.view)
+        let tipView = SiriTipUIView(intent: SearchPhotosIntent())
+        view.addSubview(tipView)
     }
 }
 ```
@@ -98,7 +88,7 @@ class PhotoViewController: UIViewController {
 
 - `@AssistantIntent` requires the intent to exactly satisfy the schema's required parameters — missing a required `@Parameter` causes a compile-time error
 - Domain schemas are curated by Apple; you cannot define custom schemas — pick the closest built-in domain or fall back to a plain `AppIntent`
-- `SiriTipView` / `SiriTip` only renders when the system determines the tip is relevant; it may show nothing in certain conditions (e.g., the user has already added the shortcut)
-- Intent donations work best when the user performs the action frequently — Siri uses frequency and recency to rank suggestions
+- `SiriTipView` (SwiftUI) and `SiriTipUIView` (UIKit) only render when the system determines the tip is relevant; they may show nothing in certain conditions (e.g., the user has already added the shortcut)
+- Donation is automatic when you conform to `AppShortcutsProvider` — do not call any manual donation API; there is no `IntentDonationManager` in App Intents
 - Test Siri integration on a real device with a signed-in Apple ID; the Simulator has limited Siri support
 - `AppEntity` objects must implement `defaultQuery` returning an `EntityQuery` — omitting this prevents Siri from resolving entity references by voice

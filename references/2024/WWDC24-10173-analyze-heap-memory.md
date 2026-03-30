@@ -20,7 +20,7 @@ Think of heap analysis as a three-layer funnel:
 
 1. **Instruments / Allocations** — "what was allocated and when?" Shows allocation count, persistent bytes, and backtraces per call site.
 2. **Memory Graph Debugger** — "why is it still alive?" Renders the live object graph; follow reference edges back to a root (e.g., a strong capture in a closure or a retain cycle).
-3. **MetricKit** — "how bad is it in the field?" `MXMemoryMetric` delivers peak/average memory from real user sessions via `MXMetricPayload`.
+3. **MetricKit** — "how bad is it in the field?" `MXMemoryMetric` delivers peak memory usage from real user sessions via `MXMetricPayload`.
 
 ## Usage
 
@@ -33,8 +33,7 @@ class MetricsSubscriber: NSObject, MXMetricManagerSubscriber {
         for payload in payloads {
             guard let mem = payload.memoryMetrics else { continue }
             let peak = mem.peakMemoryUsage          // Measurement<UnitInformationStorage>
-            let avg  = mem.averageSuspendedMemory   // Measurement<UnitInformationStorage>
-            print("Peak: \(peak), Avg suspended: \(avg)")
+            print("Peak: \(peak)")
         }
     }
 }
