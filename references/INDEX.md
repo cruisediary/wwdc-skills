@@ -184,4 +184,11 @@ All paths are relative to the `references/` directory.
 | 2020/WWDC20-10650-whats-new-in-cloudkit.md | What's new in CloudKit | CloudKit | iOS 14+ | reference-only | WWDC20: encryptedValues for per-field encryption, CKFetchRecordZonesOperation, shared database subscriptions |
 | 2020/WWDC20-10091-whats-new-in-xcode.md | What's new in Xcode | Xcode | iOS 14+ | reference-only | WWDC20: Xcode 12 — App Clips target, multiplatform targets, StoreKitTest framework, StoreKit configuration files |
 | 2020/WWDC20-10043-build-action-classifier-create-ml.md | Build an Action Classifier with Create ML | Create ML | macOS 11+ | reference-only | WWDC20: MLActionClassifier, labeled video directories, VideoAugmentationOptions, predictionWindowSize |
+| 2018/WWDC18-202-whats-new-in-cocoa-touch.md | What's New in Cocoa Touch | Cocoa Touch | iOS 12+ | deprecated | WWDC18: Siri Shortcuts donation, grouped notifications (threadIdentifier), Natural Language framework preview, automatic passwords |
+| 2018/WWDC18-713-introducing-natural-language-framework.md | Introducing Natural Language Framework | Natural Language | iOS 12+ | deprecated | WWDC18: NLLanguageRecognizer, NLTokenizer, NLTagger replacing NSLinguisticTagger |
+| 2018/WWDC18-225-a-tour-of-uicollectionview.md | A Tour of UICollectionView | UIKit | iOS 12+ | deprecated | WWDC18: UICollectionViewDataSource patterns, UICollectionViewFlowLayout, supplementary views, performBatchUpdates |
+| 2018/WWDC18-411-getting-to-know-swift-package-manager.md | Getting to Know Swift Package Manager | Swift Package Manager | iOS 12+ | deprecated | WWDC18: SPM 0.x — Package.swift manifest, swift build/test/package CLI, pre-Xcode integration era |
+| 2018/WWDC18-708-whats-new-in-core-ml-2.md | What's New in Core ML 2 | Core ML | iOS 12+ | deprecated | WWDC18: batch predictions, custom layers, on-device model update, smaller model sizes |
+| 2018/WWDC18-703-introducing-create-ml.md | Introducing Create ML | Create ML | macOS 10.14+ | deprecated | WWDC18: Create ML drag-and-drop training, MLImageClassifier, MLTextClassifier, macOS Playground API |
+| 2018/WWDC18-602-whats-new-in-arkit-2.md | What's New in ARKit 2 | ARKit | iOS 12+ | deprecated | WWDC18: ARWorldMap multi-user sessions, image/object tracking, environment texturing, AR Quick Look |
 
