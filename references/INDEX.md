@@ -38,6 +38,11 @@ All paths are relative to the `references/` directory.
 | 2023/visionos.md | — | visionOS | visionOS 1+ | reference-only | WWDC23: visionOS introduction — RealityView, spaces, volumes |
 | 2024/swiftdata.md | — | SwiftData | iOS 18+ | reference-only | WWDC24: #Index, #Unique, Custom DataStore, history tracking |
 | 2024/swift-testing.md | — | Swift Testing | iOS 18+ | reference-only | WWDC24: Swift Testing introduction — @Test, #expect, @Suite |
+| 2024/WWDC24-10136-whats-new-in-swift.md | What's new in Swift | Swift | iOS 18+ | reference-only | WWDC24: typed throws, noncopyable types, Swift 6 transition |
+| 2024/WWDC24-10169-migrate-your-app-to-swift-6.md | Migrate your app to Swift 6 | Swift | iOS 18+ | reference-only | WWDC24: incremental Swift 6 migration, Sendable, strict concurrency |
+| 2024/WWDC24-10170-consume-noncopyable-types-in-swift.md | Consume noncopyable types in Swift | Swift | iOS 18+ | reference-only | WWDC24: ~Copyable, consume operator, exclusive ownership types |
+| 2024/WWDC24-10164-a-swift-tour-explore-swifts-concurrency.md | A Swift Tour: Explore Swift's concurrency | Swift Concurrency | iOS 15+ | reference-only | WWDC24: beginner async/await guide, actors, TaskGroup |
+| 2024/WWDC24-10171-demystify-explicitly-built-modules.md | Demystify explicitly built modules | Swift | iOS 18+ | reference-only | WWDC24: Xcode 16 explicit module builds, faster compilation |
 | 2025/liquid-glass.md | — | Liquid Glass | iOS 26+ | reference-only | WWDC25: Liquid Glass material introduction |
 | 2025/swift-concurrency.md | — | Swift Concurrency | iOS 26+ | reference-only | WWDC25: Default actor isolation, Swift 6 concurrency updates |
 | 2025/webview.md | — | WebView | iOS 26+ | reference-only | WWDC25: WebView SwiftUI integration |
