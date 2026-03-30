@@ -56,13 +56,14 @@ func isPositive(_ n: Int) {
 
 **Parameterized tests with named enum cases:**
 ```swift
-enum Locale: CaseIterable {
+enum TestLocale: String, CaseIterable {
     case en, fr, de, ja
 }
 
-@Test(arguments: Locale.allCases)
-func formatterProducesOutput(for locale: Locale) throws {
-    let formatter = DateFormatter(locale: locale)
+@Test(arguments: TestLocale.allCases)
+func formatterProducesOutput(for locale: TestLocale) throws {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: locale.rawValue)
     let result = formatter.string(from: .now)
     try #require(!result.isEmpty)
 }
