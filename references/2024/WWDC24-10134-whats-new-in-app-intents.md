@@ -16,7 +16,7 @@ related:
 - `@AssistantSchemas` macro applies multiple schema bindings to an `AppIntent` at once
 - `AppShortcutsProvider.shortcutTileColor` lets you tint the shortcut tile in the Shortcuts app
 - `IntentParameter` supports predicate filters so Siri can narrow entity queries before presenting options
-- `UniversalLink` intent action opens a URL using the universal link routing mechanism rather than `OpenURLIntent`
+- `OpenURLIntent` opens a URL from within an `AppIntent`, replacing any need for a hypothetical `UniversalLink` action
 
 ## Before / After
 
@@ -50,15 +50,18 @@ struct MyShortcuts: AppShortcutsProvider {
 ```
 
 ```swift
-// UniversalLink action — open a deep-link URL through universal link routing
+// OpenURLIntent — open a URL from an AppIntent
 import AppIntents
 
-struct OpenItemIntent: AppIntent {
-    static var title: LocalizedStringResource = "Open Item"
-    @Parameter(title: "Item URL") var itemURL: URL
+struct OpenWebpageIntent: AppIntent {
+    static let title: LocalizedStringResource = "Open Webpage"
 
-    func perform() async throws -> some OpensIntent {
-        return .result(opensIntent: UniversalLink(url: itemURL))
+    @Parameter(title: "URL")
+    var url: URL
+
+    func perform() async throws -> some IntentResult {
+        await UIApplication.shared.open(url)
+        return .result()
     }
 }
 ```
@@ -67,11 +70,11 @@ struct OpenItemIntent: AppIntent {
 
 1. Replace multiple `@AssistantIntent` declarations that share a type with a single `@AssistantSchemas(…)` macro call.
 2. Set `AppShortcutsProvider.shortcutTileColor` to match your app's brand color.
-3. Where you previously used `OpenURLIntent` for universal links, switch to `UniversalLink` to get proper app routing.
+3. To open a URL from an intent, implement `OpenURLIntent` (conforming to `AppIntent`) and call `UIApplication.shared.open(url)` inside `perform()`.
 4. For entity parameters that should be filtered before Siri presents choices, add a predicate via the `IntentParameter` options — see Apple docs for the exact `EntityQueryPredicate` API.
 
 ## Compatibility notes
 
 - `@AssistantSchemas` and `shortcutTileColor` require iOS 18 / macOS 15.
-- `UniversalLink` is an iOS 18+ intent action; fall back to `OpenURLIntent` on earlier OS versions.
+- `OpenURLIntent` (via `UIApplication.shared.open`) is available across all supported iOS versions; no special fallback is required.
 - `IntentParameter` predicate filtering requires iOS 18 and a conforming `EntityQuery` that adopts `EntityPropertyQuery`.

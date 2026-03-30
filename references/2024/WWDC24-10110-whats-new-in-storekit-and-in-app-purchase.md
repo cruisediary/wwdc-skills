@@ -43,21 +43,33 @@ func checkGracePeriod(for productID: String) async {
 // BEFORE: ProductView had limited built-in styling
 ProductView(id: "com.example.premium")
 
-// AFTER (iOS 18): ProductView with a custom promotional style
-ProductView(id: "com.example.premium") { phase in
-    // see Apple docs for exact ProductViewStyle protocol and phase API
-    switch phase {
-    case .loading:
-        ProgressView()
-    case .success(let product):
-        VStack {
-            Text(product.displayName).font(.headline)
-            Text(product.displayPrice).foregroundStyle(.secondary)
+// AFTER (iOS 18): ProductView with a custom style via ProductViewStyle conformance
+struct SubscriptionProductStyle: ProductViewStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        switch configuration.state {
+        case .loading:
+            ProgressView()
+        case .success(let product):
+            VStack {
+                Text(product.displayName)
+                    .font(.headline)
+                Text(product.displayPrice)
+                    .foregroundStyle(.secondary)
+                configuration.buyButton
+                    .buttonStyle(.borderedProminent)
+            }
+        default:
+            configuration.buyButton
         }
-    default:
-        EmptyView()
     }
 }
+
+// Usage:
+ProductView(id: "com.example.premium") {
+    // product image
+    Image(systemName: "star.fill")
+}
+.productViewStyle(SubscriptionProductStyle())
 ```
 
 ```swift
