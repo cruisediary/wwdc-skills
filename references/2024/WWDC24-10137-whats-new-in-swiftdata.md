@@ -20,7 +20,7 @@ iOS 18 expands SwiftData with compound index and uniqueness constraint macros, a
 - **`#Index` macro** — declares compound indexes on `@Model` classes for faster multi-predicate queries; accepts one or more keypaths to index together
 - **`#Unique` macro** — enforces uniqueness constraints on one or more properties; SwiftData upserts on conflict rather than duplicating
 - **Custom `DataStore` protocol** — `ModelContainer` no longer requires SQLite; any storage backend can be plugged in by conforming to `DataStore`
-- **SwiftData history tracking** — `ModelContext.fetchHistory(after:)` returns an ordered list of inserts, updates, and deletes since a given `HistoryToken`
+- **SwiftData history tracking** — `context.fetchHistory(_:)` (takes a `HistoryDescriptor<DefaultHistoryTransaction>`) returns an ordered list of inserts, updates, and deletes; persist the returned `HistoryToken` to query only changes since the last launch
 
 ## Before / After
 
@@ -38,13 +38,12 @@ class Article {
 ```swift
 @Model
 class Article {
+    #Index<Article>([\.category, \.date])
+
     var title: String
     var category: String
     var date: Date
 }
-
-// Declared outside the type, at file scope
-#Index<Article>([\.category, \.date])
 ```
 
 **Uniqueness constraint — prevents duplicate slugs:**
@@ -61,11 +60,11 @@ class Article {
 
 ## Migration steps
 
-1. Identify `@Model` classes that are queried with multi-property predicates and add `#Index<ModelType>([\.prop1, \.prop2])` at file scope
+1. Identify `@Model` classes that are queried with multi-property predicates and add `#Index<ModelType>([\.prop1, \.prop2])` inside the `@Model` class body
 2. For properties that must be unique (slugs, UUIDs, external identifiers), add `#Unique<ModelType>([\.property])` inside the `@Model` class body
 3. To migrate an existing store, SwiftData applies new indexes and constraints automatically on next container open — no manual migration descriptor required for index-only changes
 4. For custom storage backends, implement the `DataStore` protocol (see WWDC24-10138) and pass to `ModelContainer(schema:configurations:)`
-5. To start tracking history, call `ModelContext.fetchHistory(after:)` and persist the returned `HistoryToken` between launches
+5. To start tracking history, create a `HistoryDescriptor<DefaultHistoryTransaction>` and call `context.fetchHistory(_:)` — e.g. `let transactions = try context.fetchHistory(HistoryDescriptor<DefaultHistoryTransaction>(predicate: nil))` — then persist the returned `HistoryToken` between launches
 
 ## Compatibility notes
 

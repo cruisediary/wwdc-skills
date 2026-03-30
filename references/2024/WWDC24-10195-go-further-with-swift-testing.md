@@ -110,10 +110,12 @@ swift test --filter performance
 
 **Custom trait for shared setup:**
 ```swift
+struct NetworkUnavailable: Error {}
+
 struct RequiresNetworkTrait: TestTrait {
     func prepare(for test: Test) async throws {
         guard isNetworkAvailable() else {
-            throw XCTSkip("Network not available")
+            throw NetworkUnavailable()
         }
     }
 }
