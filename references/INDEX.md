@@ -58,3 +58,8 @@ All paths are relative to the `references/` directory.
 | 2025/liquid-glass.md | — | Liquid Glass | iOS 26+ | reference-only | WWDC25: Liquid Glass material introduction |
 | 2025/swift-concurrency.md | — | Swift Concurrency | iOS 26+ | reference-only | WWDC25: Default actor isolation, Swift 6 concurrency updates |
 | 2025/webview.md | — | WebView | iOS 26+ | reference-only | WWDC25: WebView SwiftUI integration |
+| 2024/WWDC24-10135-whats-new-in-xcode.md | What's new in Xcode | Xcode | iOS 18+ | reference-only | WWDC24: predictive code completion, Swift 6 migration assistant, RealityKit debugger, explicit modules |
+| 2024/WWDC24-10198-run-break-inspect-lldb.md | Run, Break, Inspect: Explore effective debugging in LLDB | LLDB | iOS 18+ | reference-only | WWDC24: unified p command, watchpoint set variable, memory read, CustomDebugStringConvertible |
+| 2024/WWDC24-10173-analyze-heap-memory.md | Analyze heap memory | Instruments | iOS 18+ | reference-only | WWDC24: Allocations template, allocation backtrace, Memory Graph Debugger, MXMemoryMetric |
+| 2024/WWDC24-10181-profile-optimize-game-cpu.md | Profile and optimize your game's CPU performance | Instruments | iOS 18+ | reference-only | WWDC24: Game Performance template, CPU counters, os_signpost for game loops, GPU frame capture |
+| 2024/WWDC24-10133-bring-your-app-to-siri.md | Bring your app to Siri | App Intents | iOS 18+ | reference-only | WWDC24: @AssistantIntent, AssistantSchema domain intents, SiriTipView, IntentDonation |
