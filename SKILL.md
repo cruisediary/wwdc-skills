@@ -31,7 +31,7 @@ Read `references/INDEX.md`. All file paths in that file are relative to the `ref
 - If the source file doesn't exist in the repo: load only the canonical target file and explain the current approach
 - In migration mode: always produce a before/after diff response, ignoring the loaded file's `shape` field
 
-**Session ID mode** — check this before Year/session mode. Triggers when the query contains a string matching the pattern `WWDC\d{2}-\d{5}` (e.g., `WWDC24-10179`). Session IDs are handled exclusively here and never fall through to Year/session mode.
+**Session ID mode** — check this before Year/session mode. Triggers when the query contains a string matching the pattern `WWDC\d{2}-\d{3,5}` (e.g., `WWDC24-10179` or `WWDC18-713`). Session IDs are handled exclusively here and never fall through to Year/session mode.
 - Scan INDEX.md for any row whose `File` path contains that session ID string
 - If found: load that file directly
 - If not found: respond "This session isn't covered yet in wwdc-skills." Do not fall through to other modes.
