@@ -90,7 +90,7 @@ Liquid Glass appearance shifts significantly between modes. Always test:
 
 - `.glassEffect()` requires iOS 26+ — always guard with `#available(iOS 26, *)` or set deployment target to iOS 26+
 - Excessive use of glass surfaces can harm legibility, especially over low-contrast backgrounds
-- Custom `Shape` clipping combined with `.glassEffect()` requires careful ordering of modifiers — glass must know the clipping shape; use `.glassEffect()` before `.clipShape()` in most cases (verify with Xcode previews)
+- `.glassEffect()` handles clipping internally — explicit `.clipShape()` is typically not needed; adding an extra `.clipShape()` after `.glassEffect()` may produce unexpected results (verify with Xcode previews)
 - Performance: Liquid Glass is GPU-accelerated but avoid placing glass surfaces inside fast-scrolling lists without testing frame rate
 
 ## Compatibility notes

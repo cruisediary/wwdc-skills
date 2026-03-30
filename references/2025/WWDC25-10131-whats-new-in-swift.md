@@ -19,7 +19,7 @@ WWDC25 introduced default `@MainActor` isolation for types conforming to main-th
 
 ## What's new
 
-- **Default `@MainActor` isolation** — types conforming to `View`, `UIViewController`, and other main-thread protocols are now implicitly `@MainActor`-isolated; no explicit annotation required
+- **Default `@MainActor` isolation** — types conforming to `View`, `UIViewController`, and other explicitly `@MainActor`-annotated protocols are now implicitly `@MainActor`-isolated; no explicit annotation required. Note: `ObservableObject` does NOT confer `@MainActor` isolation — only protocols explicitly annotated `@MainActor` do.
 - **`nonisolated` opt-out** — mark individual methods or stored properties `nonisolated` to run off the main actor without leaving the type's isolation domain
 - **Typed throws improvements** — better inference of the thrown type in generic contexts; `rethrows` and typed throws interact more cleanly
 - **`~Copyable` / `~Escapable` refinements** — expanded use in generics; conditional conformances involving `~Copyable` are now more expressible (see Apple docs for exact syntax)

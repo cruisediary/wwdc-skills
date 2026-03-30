@@ -20,7 +20,9 @@ This session provides a step-by-step guide for migrating existing codebases to S
 
 ## Concept
 
-In Swift 6.2 (Xcode 26), types that conform to protocols already annotated `@MainActor` (such as `View`, `UIViewController`, `UIView`, `ObservableObject`) are implicitly main-actor-isolated. This eliminates the need to annotate every type and method individually.
+In Swift 6.2 (Xcode 26), types that conform to protocols already annotated `@MainActor` (such as `View`, `UIViewController`, `UIView`) are implicitly main-actor-isolated. This eliminates the need to annotate every type and method individually.
+
+> **Note:** `ObservableObject` does NOT confer `@MainActor` isolation — only protocols explicitly annotated `@MainActor` do.
 
 The key operations are:
 - **Remove** redundant `@MainActor` on types/methods where isolation is implied by a protocol conformance

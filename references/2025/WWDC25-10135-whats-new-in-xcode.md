@@ -11,7 +11,7 @@ related:
   - 2024/WWDC24-10135-whats-new-in-xcode.md
 ---
 
-# Xcode — What's New in Xcode (WWDC26)
+# Xcode — What's New in Xcode (WWDC25)
 
 Xcode 26 introduces expanded AI-assisted code completion, Swift 6.2 migration tooling, Liquid Glass preview support, and improved build performance.
 

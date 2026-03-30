@@ -23,7 +23,7 @@ iOS 26 brings Liquid Glass material to SwiftUI, a redesigned tab bar with fluid 
 - **Liquid Glass integration** — system containers (tab bars, navigation bars, sheets) automatically adopt Liquid Glass material; custom surfaces can use `GlassEffect` modifier (see `canonical/liquid-glass.md`)
 - **New tab bar styles** — `TabView` gains additional style options for the iOS 26 fluid tab bar; the `.sidebarAdaptable` style introduced in iOS 18 continues and is enhanced
 - **Updated toolbar APIs** — toolbar placement and material customization aligned with the Liquid Glass design system; see Apple docs for specific modifier names
-- **`WebView` in SwiftUI** — native `WebView` type replaces `WKWebViewRepresentable` wrappers; accepts a `URL` or `WKWebViewConfiguration` (see `canonical/webview.md`)
+- **`WebView` in SwiftUI** — native `WebView` type replaces `WKWebViewRepresentable` wrappers; uses a `WebPage` model object (`WebView(webPage:)`) for loading and navigation (see `canonical/webview.md`)
 - **Continued `@Observable` and `@Environment` improvements** — reduced boilerplate, better compile-time diagnostics
 
 ## Before / After
@@ -46,16 +46,19 @@ struct WebWrapper: UIViewRepresentable {
 WebWrapper(url: URL(string: "https://example.com")!)
 ```
 
-**After (iOS 26 — native `WebView`):**
+**After (iOS 26 — native `WebView` with `WebPage` model):**
 ```swift
 import SwiftUI
-import WebKit  // still required for WKWebViewConfiguration
+import WebKit
 
-// Simple URL-based usage
-WebView(url: URL(string: "https://example.com")!)
+// WebPage is the model object; WebView renders it
+let page = WebPage()
+page.load(URLRequest(url: URL(string: "https://example.com")!))
 
-// With configuration (see Apple docs for full API)
-// WebView(configuration: myConfig)
+// In a view:
+WebView(webPage: page)
+
+// See canonical/webview.md for full WebPage API
 ```
 
 **Before (iOS 18 tab bar — manual style configuration):**
@@ -80,7 +83,7 @@ TabView {
 
 ## Migration steps
 
-1. Adopt `WebView(url:)` — remove `UIViewRepresentable` wrappers around `WKWebView` where a simple URL load is sufficient
+1. Adopt `WebView(webPage:)` with a `WebPage` model — remove `UIViewRepresentable` wrappers around `WKWebView`; create a `WebPage`, call `page.load(_:)`, and pass it to `WebView(webPage:)` (see `canonical/webview.md`)
 2. Remove manual `GlassEffect` customizations on standard containers (tab bars, sheets) — the system provides them automatically on iOS 26
 3. Audit custom toolbar modifiers; some placement values may have changed — test with Xcode 26 and verify visual results on device
 4. For custom surfaces that need Liquid Glass: apply the `.glassEffect()` modifier (see `canonical/liquid-glass.md`)
