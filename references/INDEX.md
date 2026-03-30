@@ -58,6 +58,17 @@ All paths are relative to the `references/` directory.
 | 2025/liquid-glass.md | — | Liquid Glass | iOS 26+ | reference-only | WWDC25: Liquid Glass material introduction |
 | 2025/swift-concurrency.md | — | Swift Concurrency | iOS 26+ | reference-only | WWDC25: Default actor isolation, Swift 6 concurrency updates |
 | 2025/webview.md | — | WebView | iOS 26+ | reference-only | WWDC25: WebView SwiftUI integration |
+| 2023/WWDC23-10187-meet-swiftdata.md | Meet SwiftData | SwiftData | iOS 17+ | reference-only | WWDC23: @Model, @Query, ModelContainer, ModelContext — SwiftData introduction |
+| 2023/WWDC23-10195-model-your-schema-with-swiftdata.md | Model your schema with SwiftData | SwiftData | iOS 17+ | reference-only | WWDC23: @Relationship deleteRule, VersionedSchema, SchemaMigrationPlan, MigrationStage |
+| 2023/WWDC23-10189-migrate-to-swiftdata.md | Migrate to SwiftData | SwiftData | iOS 17+ | reference-only | WWDC23: Core Data → SwiftData migration, NSPredicate → #Predicate, parallel-stack strategy |
+| 2023/WWDC23-10154-build-an-app-with-swiftdata.md | Build an app with SwiftData | SwiftData | iOS 17+ | reference-only | WWDC23: @Query sort/filter, List + SwiftData, relationships, iCloud sync via ModelConfiguration |
+| 2023/WWDC23-10196-dive-deeper-into-swiftdata.md | Dive deeper into SwiftData | SwiftData | iOS 17+ | reference-only | WWDC23: FetchDescriptor, #Predicate, SortDescriptor, batch deletes, performance best practices |
+| 2023/WWDC23-10164-whats-new-in-swift.md | What's new in Swift | Swift | iOS 17+ | reference-only | WWDC23: Swift 5.9 macros, parameter packs, if/switch expressions, nonisolated(unsafe) |
+| 2023/WWDC23-10166-meet-swift-macros.md | Meet Swift macros | Swift Macros | iOS 17+ | reference-only | WWDC23: freestanding macros (#stringify), attached macros (@Observable, @Model), Xcode expansion |
+| 2023/WWDC23-10167-write-swift-macros.md | Write Swift macros | Swift Macros | iOS 17+ | reference-only | WWDC23: SwiftSyntax, MacroExpansionContext, ExpressionMacro implementation, diagnostics |
+| 2023/WWDC23-10168-expand-on-swift-macros.md | Expand on Swift macros | Swift Macros | iOS 17+ | reference-only | WWDC23: peer macros (@AddAsync), conformance macros, MemberMacro, extension macros, fix-it diagnostics |
+| 2023/WWDC23-10170-beyond-the-basics-of-structured-concurrency.md | Beyond the basics of structured concurrency | Swift Concurrency | iOS 17+ | reference-only | WWDC23: withTaskGroup, AsyncStream, Clock protocol, custom SerialExecutor |
+| 2023/WWDC23-10172-generalize-apis-with-parameter-packs.md | Generalize APIs with parameter packs | Swift | iOS 17+ | reference-only | WWDC23: repeat each T, Pack, parameter pack expansion, variadic generics |
 | 2024/WWDC24-10135-whats-new-in-xcode.md | What's new in Xcode | Xcode | iOS 18+ | reference-only | WWDC24: predictive code completion, Swift 6 migration assistant, RealityKit debugger, explicit modules |
 | 2024/WWDC24-10198-run-break-inspect-lldb.md | Run, Break, Inspect: Explore effective debugging in LLDB | LLDB | iOS 18+ | reference-only | WWDC24: unified p command, watchpoint set variable, memory read, CustomDebugStringConvertible |
 | 2024/WWDC24-10173-analyze-heap-memory.md | Analyze heap memory | Instruments | iOS 18+ | reference-only | WWDC24: Allocations template, allocation backtrace, Memory Graph Debugger, MXMemoryMetric |
