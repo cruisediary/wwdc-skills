@@ -63,3 +63,5 @@ All paths are relative to the `references/` directory.
 | 2024/WWDC24-10173-analyze-heap-memory.md | Analyze heap memory | Instruments | iOS 18+ | reference-only | WWDC24: Allocations template, allocation backtrace, Memory Graph Debugger, MXMemoryMetric |
 | 2024/WWDC24-10181-profile-optimize-game-cpu.md | Profile and optimize your game's CPU performance | Instruments | iOS 18+ | reference-only | WWDC24: Game Performance template, CPU counters, os_signpost for game loops, GPU frame capture |
 | 2024/WWDC24-10133-bring-your-app-to-siri.md | Bring your app to Siri | App Intents | iOS 18+ | reference-only | WWDC24: @AssistantIntent, AssistantSchema domain intents, SiriTipView, IntentDonation |
+| 2024/WWDC24-10118-whats-new-in-uikit.md | What's new in UIKit | UIKit | iOS 18+ | reference-only | WWDC24: UIUpdateLink, UITabBarController.Mode.tabSidebar, UIDocumentViewController, sheet sizing |
+| 2024/WWDC24-10132-evolve-your-document-launch-experience.md | Evolve your document launch experience | UIKit | iOS 18+ | reference-only | WWDC24: UIDocumentViewController, UIDocumentLaunchViewController, background extension icons |
