@@ -1,3 +1,8 @@
+---
+name: wwdc-skills
+description: Reference skill for Apple WWDC developer sessions (WWDC18–WWDC25). Covers Swift, SwiftUI, SwiftData, Swift Concurrency, UIKit, ARKit, RealityKit, visionOS, Xcode, and all Apple frameworks. Use when asked about Apple APIs, iOS/macOS/visionOS development, WWDC session content, API migration, or any Apple developer topic. Also supports direct session lookup by session ID (e.g. WWDC24-10137) or session title.
+---
+
 # WWDC Skills
 
 Reference skill for Apple WWDC sessions (WWDC18–WWDC25). Helps iOS/Swift developers write code using Apple APIs.

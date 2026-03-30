@@ -4,6 +4,22 @@ Claude Code skills for every Apple WWDC session — APIs, code examples, and mig
 
 This repository packages Apple WWDC session content (WWDC18–WWDC25) as structured reference files for iOS/Swift developers. It works as a Claude Code skill you invoke from the CLI, and as a reference library you can drop into any Claude Code setup.
 
+## Installation
+
+### As an agentskills-compatible skill
+
+This skill follows the [agentskills](https://github.com/agentskills/agentskills) open format. Install it into your skills directory:
+
+```bash
+# User-level (available in all projects)
+git clone https://github.com/cruisediary/wwdc-skills ~/.agents/skills/wwdc-skills
+
+# Or project-level
+git clone https://github.com/cruisediary/wwdc-skills .agents/skills/wwdc-skills
+```
+
+Once installed, Claude Code will discover it automatically from the skill catalog.
+
 ## Usage
 
 ### As a Claude Code skill
