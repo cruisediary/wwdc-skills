@@ -26,10 +26,20 @@ Read `references/INDEX.md`. All file paths in that file are relative to the `ref
 - If the source file doesn't exist in the repo: load only the canonical target file and explain the current approach
 - In migration mode: always produce a before/after diff response, ignoring the loaded file's `shape` field
 
+**Session ID mode** — triggers when the query contains a string matching the pattern `WWDC\d{2}-\d{5}` (e.g., `WWDC24-10179`):
+- Scan INDEX.md for any row whose `File` path contains that session ID string
+- If found: load that file directly
+- If not found: respond "This session isn't covered yet in wwdc-skills." Do not fall through to other modes.
+
 **Year/session mode** — triggers if the query names a specific WWDC year or session ID (e.g., "WWDC23", "WWDC21-10132"):
 - If the query contains a session ID (e.g., "WWDC24-10137"), session IDs follow the format `WWDC{YY}-{5-digit-ID}`. Extract the year from the ID (e.g., `24` → `2024`). Use the query context or surrounding text to identify the framework name. If no framework can be identified from context, ask the user to clarify which framework they're asking about before loading any file. Once the framework is known, load `references/{year}/{framework}.md`.
 - If a year is identified but no specific framework is named, list the key topics from INDEX.md rows for that year and ask the user which framework to focus on before loading any file.
 - If a framework is identified, load `references/{year}/{framework}.md`.
+
+**Session title mode** — triggers when the query contains words that closely match a `Title` column entry in INDEX.md (case-insensitive, partial match):
+- If one title matches: load that session file
+- If multiple titles match: prefer the most recent year; if same year and still tied, load both files and answer from both
+- If no title matches: fall through to Current API mode
 
 **Current API mode** — default for all other queries:
 Load `references/canonical/{framework}.md`. If multiple INDEX.md rows match the same framework, always prefer the canonical file over year-stamped files.
