@@ -20,6 +20,18 @@ git clone https://github.com/cruisediary/wwdc-skills .agents/skills/wwdc-skills
 
 Once installed, Claude Code will discover it automatically from the skill catalog.
 
+### As a Claude Code reference library
+
+Clone or copy individual files from `references/` into any project:
+
+```bash
+# Full library
+git clone https://github.com/cruisediary/wwdc-skills
+
+# Single file (self-contained, no dependencies)
+curl -O https://raw.githubusercontent.com/cruisediary/wwdc-skills/main/references/canonical/swiftui.md
+```
+
 ## Usage
 
 ### As a Claude Code skill
@@ -30,6 +42,7 @@ Add this skill to your Claude Code configuration, then ask questions naturally:
 What's new in SwiftData?
 Migrate my app from Combine to AsyncSequence
 Show me WWDC23 Observation session
+WWDC24-10179
 ```
 
 SKILL.md is the entry point. It reads `references/INDEX.md` to locate the right reference file, then returns a focused answer in one of three shapes: code-first, guide-first, or migration (before/after).
@@ -37,8 +50,6 @@ SKILL.md is the entry point. It reads `references/INDEX.md` to locate the right 
 ### As a reference library
 
 Individual files in `references/` can be copied into any project's `.claude/skills/` or `.claude/references/` directory. Each file is self-contained and works without the rest of this repo.
-
-The `docs/` directory contains internal design documentation and does not need to be copied.
 
 ## What's covered
 
@@ -53,18 +64,26 @@ The `docs/` directory contains internal design documentation and does not need t
 | WWDC24 | SwiftData refinements (#Index, #Unique), Swift Testing |
 | WWDC25 | Liquid Glass, Swift Concurrency (default isolation), WebView |
 
-Canonical files in `references/canonical/` always reflect current best practice regardless of which year a framework was introduced. When a framework evolves across years, the canonical file is the authoritative source.
+150+ session files across WWDC18–WWDC25. Canonical files in `references/canonical/` always reflect current best practice regardless of which year a framework was introduced.
 
 ## How it works
 
 `SKILL.md` is the router. On each invocation it reads `references/INDEX.md` to find the right file, then loads it and generates a response.
 
-Three query modes (evaluated in priority order):
+Five query modes (evaluated in priority order):
 
-1. **Migration** — detected by keywords like "migrate", "convert", "replace", or "before/after". Returns a side-by-side before/after diff with explanation.
-2. **Year/session** — detected when a WWDC year or session name is specified. Returns guide-first content for that session.
-3. **Current API** (default) — returns a code-first answer using the canonical best practice for the topic.
+1. **Migration** — "migrate", "convert", "replace", or "before/after". Returns a side-by-side before/after diff.
+2. **Session ID** — exact session ID like `WWDC24-10179` or `WWDC18-713`. Loads that session directly.
+3. **Year/session** — WWDC year + framework name. Returns session-specific content.
+4. **Session title** — partial title match against session names in INDEX.md.
+5. **Current API** (default) — loads the canonical best-practice file for the framework.
 
 ## Contributing
 
-To add a new year, create a `references/YYYY/` directory and add session files following the schema in the design spec (`docs/`). Append the new rows to `references/INDEX.md` so the router can find them. Update any affected canonical files in `references/canonical/` to reflect API changes or new best practices introduced that year.
+To add a new year, create a `references/YYYY/` directory and add session files following the schema in `SKILL.md`. Append new rows to `references/INDEX.md`. Update affected canonical files in `references/canonical/` to reflect the latest best practices.
+
+Run `python3 scripts/audit.py` to verify structural integrity before submitting.
+
+## License
+
+MIT © [cruisediary](https://github.com/cruisediary)
