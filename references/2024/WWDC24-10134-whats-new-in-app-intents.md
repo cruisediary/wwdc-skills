@@ -50,31 +50,21 @@ struct MyShortcuts: AppShortcutsProvider {
 ```
 
 ```swift
-// OpenURLIntent — open a URL from an AppIntent
-import AppIntents
-
-struct OpenWebpageIntent: AppIntent {
-    static let title: LocalizedStringResource = "Open Webpage"
-
-    @Parameter(title: "URL")
-    var url: URL
-
-    func perform() async throws -> some IntentResult {
-        await UIApplication.shared.open(url)
-        return .result()
-    }
-}
+// Opening a URL from an AppIntent: use the system-provided OpenURLIntent
+// which handles routing correctly in Siri/Shortcuts extension contexts
+// Note: UIApplication.shared is unavailable in intent extensions — use OpenURLIntent instead
+// See Apple docs: https://developer.apple.com/documentation/appintents/openurlintent
 ```
 
 ## Migration steps
 
 1. Replace multiple `@AssistantIntent` declarations that share a type with a single `@AssistantSchemas(…)` macro call.
 2. Set `AppShortcutsProvider.shortcutTileColor` to match your app's brand color.
-3. To open a URL from an intent, implement `OpenURLIntent` (conforming to `AppIntent`) and call `UIApplication.shared.open(url)` inside `perform()`.
+3. To open a URL from an intent, use the system-provided `OpenURLIntent` — do not use `UIApplication.shared.open()`, which is unavailable in Siri/Shortcuts extension contexts. See Apple docs for `OpenURLIntent`.
 4. For entity parameters that should be filtered before Siri presents choices, add a predicate via the `IntentParameter` options — see Apple docs for the exact `EntityQueryPredicate` API.
 
 ## Compatibility notes
 
 - `@AssistantSchemas` and `shortcutTileColor` require iOS 18 / macOS 15.
-- `OpenURLIntent` (via `UIApplication.shared.open`) is available across all supported iOS versions; no special fallback is required.
+- The system-provided `OpenURLIntent` is available across supported iOS versions for URL routing from intent context.
 - `IntentParameter` predicate filtering requires iOS 18 and a conforming `EntityQuery` that adopts `EntityPropertyQuery`.

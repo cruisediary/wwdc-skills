@@ -46,10 +46,8 @@ ProductView(id: "com.example.premium")
 // AFTER (iOS 18): ProductView with a custom style via ProductViewStyle conformance
 struct SubscriptionProductStyle: ProductViewStyle {
     func makeBody(configuration: Configuration) -> some View {
-        switch configuration.state {
-        case .loading:
-            ProgressView()
-        case .success(let product):
+        if let product = configuration.product {
+            // Product loaded — show full UI
             VStack {
                 Text(product.displayName)
                     .font(.headline)
@@ -58,8 +56,9 @@ struct SubscriptionProductStyle: ProductViewStyle {
                 configuration.buyButton
                     .buttonStyle(.borderedProminent)
             }
-        default:
-            configuration.buyButton
+        } else {
+            // Product still loading
+            ProgressView()
         }
     }
 }
