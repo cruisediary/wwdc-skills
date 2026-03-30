@@ -151,4 +151,11 @@ All paths are relative to the `references/` directory.
 | 2021/WWDC21-10254-swift-concurrency-behind-the-scenes.md | Swift concurrency: Behind the scenes | Swift Concurrency | iOS 15+ | reference-only | WWDC21: cooperative thread pool, continuation semantics, actor execution model, priority propagation |
 | 2021/WWDC21-10095-use-async-await-with-urlsession.md | Use async/await with URLSession | Swift Concurrency | iOS 15+ | reference-only | WWDC21: URLSession.data(from:), URLSession.bytes(from:) streaming, upload, download async APIs |
 | 2021/WWDC21-10058-meet-asyncsequence.md | Meet AsyncSequence | Swift Concurrency | iOS 15+ | reference-only | WWDC21: AsyncSequence protocol, for await in, AsyncStream, makeAsyncIterator, map/filter/prefix operators |
+| 2021/WWDC21-10018-whats-new-in-swiftui.md | What's new in SwiftUI | SwiftUI | iOS 15+ | reference-only | WWDC21: AsyncImage, .searchable, .refreshable, .task, .swipeActions, FocusState, AttributedString, .badge |
+| 2021/WWDC21-10022-demystify-swiftui.md | Demystify SwiftUI | SwiftUI | iOS 15+ | reference-only | WWDC21: identity (explicit vs structural), lifetime, dependency graph — how SwiftUI decides what to redraw |
+| 2021/WWDC21-10192-whats-new-in-swift.md | What's new in Swift | Swift | iOS 15+ | reference-only | WWDC21: Swift 5.5 — async/await, Sendable, #if canImport, CGFloat/Double interop, @resultBuilder stable |
+| 2021/WWDC21-10059-whats-new-in-uikit.md | What's new in UIKit | UIKit | iOS 15+ | reference-only | WWDC21: UIButton.Configuration, UISheetPresentationController, UIListContentConfiguration, SF Symbols 3 |
+| 2021/WWDC21-10109-whats-new-in-foundation.md | What's new in Foundation | Foundation | iOS 15+ | reference-only | WWDC21: AttributedString, FormatStyle, Locale.Language, Markdown parsing in AttributedString |
+| 2021/WWDC21-10267-meet-xcode-cloud.md | Meet Xcode Cloud | Xcode | iOS 15+ | reference-only | WWDC21: workflow setup, test parallelization, CI/CD integration, ci_scripts hooks, App Store Connect webhook |
+| 2021/WWDC21-10269-whats-new-in-xcode.md | What's new in Xcode | Xcode | iOS 15+ | reference-only | WWDC21: Swift Package Collections, PR review in Xcode, Vim keybindings, column breakpoints |
 
