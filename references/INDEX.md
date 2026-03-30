@@ -43,6 +43,12 @@ All paths are relative to the `references/` directory.
 | 2024/WWDC24-10170-consume-noncopyable-types-in-swift.md | Consume noncopyable types in Swift | Swift | iOS 18+ | reference-only | WWDC24: ~Copyable, consume operator, exclusive ownership types |
 | 2024/WWDC24-10164-a-swift-tour-explore-swifts-concurrency.md | A Swift Tour: Explore Swift's concurrency | Swift Concurrency | iOS 15+ | reference-only | WWDC24: beginner async/await guide, actors, TaskGroup |
 | 2024/WWDC24-10171-demystify-explicitly-built-modules.md | Demystify explicitly built modules | Swift | iOS 18+ | reference-only | WWDC24: Xcode 16 explicit module builds, faster compilation |
+| 2024/WWDC24-10144-whats-new-in-swiftui.md | What's new in SwiftUI | SwiftUI | iOS 18+ | reference-only | WWDC24: custom containers, mesh gradients, zoom transitions, sidebar tabs |
+| 2024/WWDC24-10145-enhance-your-ui-animations-and-transitions.md | Enhance your UI animations and transitions | SwiftUI | iOS 18+ | reference-only | WWDC24: zoom transitions, matchedTransitionSource, animation completions |
+| 2024/WWDC24-10147-elevate-your-tab-and-sidebar-experience.md | Elevate your tab and sidebar experience in iPadOS | SwiftUI | iOS 18+ | reference-only | WWDC24: Tab, TabSection, sidebarAdaptable style for iPad |
+| 2024/WWDC24-10149-work-with-windows-in-swiftui.md | Work with windows in SwiftUI | SwiftUI | iOS 18+ | reference-only | WWDC24: openWindow, WindowGroup sizing, dismissWindow on macOS/iPadOS |
+| 2024/WWDC24-10151-create-custom-visual-effects-with-swiftui.md | Create custom visual effects with SwiftUI | SwiftUI | iOS 18+ | reference-only | WWDC24: MeshGradient, visualEffect modifier, scrollTransition |
+| 2024/WWDC24-10150-swiftui-essentials.md | SwiftUI essentials | SwiftUI | iOS 18+ | reference-only | WWDC24: foundational concepts — View, State, Binding, Environment, Observable |
 | 2025/liquid-glass.md | — | Liquid Glass | iOS 26+ | reference-only | WWDC25: Liquid Glass material introduction |
 | 2025/swift-concurrency.md | — | Swift Concurrency | iOS 26+ | reference-only | WWDC25: Default actor isolation, Swift 6 concurrency updates |
 | 2025/webview.md | — | WebView | iOS 26+ | reference-only | WWDC25: WebView SwiftUI integration |
