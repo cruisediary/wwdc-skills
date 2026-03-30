@@ -58,6 +58,17 @@ All paths are relative to the `references/` directory.
 | 2025/liquid-glass.md | — | Liquid Glass | iOS 26+ | reference-only | WWDC25: Liquid Glass material introduction |
 | 2025/swift-concurrency.md | — | Swift Concurrency | iOS 26+ | reference-only | WWDC25: Default actor isolation, Swift 6 concurrency updates |
 | 2025/webview.md | — | WebView | iOS 26+ | reference-only | WWDC25: WebView SwiftUI integration |
+| 2025/WWDC25-10131-whats-new-in-swift.md | What's new in Swift | Swift | iOS 26+ | reference-only | WWDC25: Default @MainActor isolation, nonisolated opt-out, typed throws improvements, ~Copyable refinements |
+| 2025/WWDC25-10144-whats-new-in-swiftui.md | What's new in SwiftUI | SwiftUI | iOS 26+ | reference-only | WWDC25: Liquid Glass integration, new tab bar styles, updated toolbar APIs, native WebView |
+| 2025/WWDC25-10145-adopt-default-actor-isolation.md | Adopt default actor isolation | Swift Concurrency | iOS 26+ | reference-only | WWDC25: Step-by-step guide to Swift 6.2 default @MainActor, nonisolated, removing nonisolated(unsafe) |
+| 2025/WWDC25-10118-whats-new-in-uikit.md | What's new in UIKit | UIKit | iOS 26+ | reference-only | WWDC25: Liquid Glass in UIKit, implicit @MainActor on UIViewController/UIView, fluid visual transitions |
+| 2025/WWDC25-10150-elevate-your-app-with-fluid-visuals.md | Elevate your app with fluid visuals | Liquid Glass | iOS 26+ | reference-only | WWDC25: GlassEffect adoption guide, tinting, layering, performance considerations |
+| 2025/WWDC25-10137-whats-new-in-swiftdata.md | What's new in SwiftData | SwiftData | iOS 26+ | reference-only | WWDC25: Expanded #Predicate support, @Model refinements, performance improvements, CloudKit sync |
+| 2025/WWDC25-10103-whats-new-in-realitykit.md | What's new in RealityKit | RealityKit | visionOS 26+ | reference-only | WWDC25: Physics refinements, ShaderGraphMaterial updates, spatial audio improvements |
+| 2025/WWDC25-10101-whats-new-in-visionos.md | What's new in visionOS | visionOS | visionOS 26+ | reference-only | WWDC25: Liquid Glass in spatial UI, immersive space improvements, scene understanding updates |
+| 2025/WWDC25-10135-whats-new-in-xcode.md | What's new in Xcode | Xcode | iOS 26+ | reference-only | WWDC25: Swift 6.2 migration tooling, Liquid Glass previews, enhanced AI code completion |
+| 2025/WWDC25-10134-whats-new-in-app-intents.md | What's new in App Intents | App Intents | iOS 26+ | reference-only | WWDC25: Apple Intelligence integration, expanded AssistantSchema domains, improved entity resolution |
+| 2025/WWDC25-10190-whats-new-in-accessibility.md | What's new in accessibility | Accessibility | iOS 26+ | reference-only | WWDC25: Liquid Glass accessibility, VoiceOver improvements, Dynamic Type in new layout contexts |
 | 2023/WWDC23-10187-meet-swiftdata.md | Meet SwiftData | SwiftData | iOS 17+ | reference-only | WWDC23: @Model, @Query, ModelContainer, ModelContext — SwiftData introduction |
 | 2023/WWDC23-10195-model-your-schema-with-swiftdata.md | Model your schema with SwiftData | SwiftData | iOS 17+ | reference-only | WWDC23: @Relationship deleteRule, VersionedSchema, SchemaMigrationPlan, MigrationStage |
 | 2023/WWDC23-10189-migrate-to-swiftdata.md | Migrate to SwiftData | SwiftData | iOS 17+ | reference-only | WWDC23: Core Data → SwiftData migration, NSPredicate → #Predicate, parallel-stack strategy |
