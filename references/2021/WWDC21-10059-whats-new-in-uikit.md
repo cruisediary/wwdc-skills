@@ -114,6 +114,59 @@ let multiConfig = UIImage.SymbolConfiguration.preferringMulticolor()
 imageView.preferredSymbolConfiguration = multiConfig
 ```
 
+## Before / After
+
+### UIButton styling
+
+```swift
+// BEFORE — property soup on UIButton
+let button = UIButton(type: .system)
+button.setTitle("Submit", for: .normal)
+button.setImage(UIImage(systemName: "paperplane"), for: .normal)
+button.backgroundColor = .systemBlue
+button.tintColor = .white
+button.layer.cornerRadius = 22
+button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
+// imagePadding requires manual spacer or titleEdgeInsets math
+
+// AFTER — UIButton.Configuration (iOS 15+)
+var config = UIButton.Configuration.filled()
+config.title = "Submit"
+config.image = UIImage(systemName: "paperplane")
+config.imagePlacement = .trailing
+config.imagePadding = 8
+config.baseBackgroundColor = .systemBlue
+config.cornerStyle = .capsule
+let button = UIButton(configuration: config)
+```
+
+### Bottom sheet presentation
+
+```swift
+// BEFORE — custom half-sheet via UIPresentationController
+class HalfSheetPresentationController: UIPresentationController {
+    override var frameOfPresentedViewInContainerView: CGRect {
+        guard let container = containerView else { return .zero }
+        return CGRect(
+            x: 0,
+            y: container.bounds.height / 2,
+            width: container.bounds.width,
+            height: container.bounds.height / 2
+        )
+    }
+    // … panGesture, dimming view, dismiss handling …
+}
+
+// AFTER — UISheetPresentationController (iOS 15+)
+let vc = DetailViewController()
+if let sheet = vc.sheetPresentationController {
+    sheet.detents = [.medium(), .large()]
+    sheet.prefersGrabberVisible = true
+    sheet.largestUndimmedDetentIdentifier = .medium
+}
+present(vc, animated: true)
+```
+
 ## Migration steps
 
 1. Replace `button.setTitle`, `button.setImage`, `button.backgroundColor` with `UIButton.Configuration`

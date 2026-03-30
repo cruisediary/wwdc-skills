@@ -141,6 +141,78 @@ Canvas { context, size in
 }
 ```
 
+## Before / After
+
+### Async image loading
+
+```swift
+// BEFORE — manual URLSession + @State
+struct AvatarView: View {
+    let url: URL
+    @State private var image: UIImage?
+
+    var body: some View {
+        Group {
+            if let image {
+                Image(uiImage: image).resizable()
+            } else {
+                ProgressView()
+            }
+        }
+        .onAppear {
+            URLSession.shared.dataTask(with: url) { data, _, _ in
+                if let data { DispatchQueue.main.async { image = UIImage(data: data) } }
+            }.resume()
+        }
+    }
+}
+
+// AFTER — AsyncImage (iOS 15+)
+AsyncImage(url: url) { phase in
+    switch phase {
+    case .success(let image): image.resizable().aspectRatio(contentMode: .fill)
+    case .failure:            Image(systemName: "photo").foregroundColor(.secondary)
+    default:                  ProgressView()
+    }
+}
+```
+
+### Pull-to-refresh
+
+```swift
+// BEFORE — UIRefreshControl bridged via UIViewRepresentable
+struct RefreshableScrollView<Content: View>: UIViewControllerRepresentable {
+    var onRefresh: () -> Void
+    var content: Content
+    // … dozens of lines of boilerplate coordinator / UIScrollView setup …
+}
+
+// AFTER — .refreshable (iOS 15+)
+List(items) { item in
+    Text(item.title)
+}
+.refreshable {
+    await viewModel.reload()   // auto-dismisses spinner when await returns
+}
+```
+
+### Search UI
+
+```swift
+// BEFORE — UISearchController bridged into SwiftUI
+struct SearchableList: UIViewControllerRepresentable {
+    @Binding var query: String
+    // … UINavigationController + UISearchController setup …
+}
+
+// AFTER — .searchable (iOS 15+)
+NavigationView {
+    List(filteredItems) { item in Text(item.name) }
+        .searchable(text: $searchText, prompt: "Search items")
+        .navigationTitle("Items")
+}
+```
+
 ## Migration steps
 
 1. Replace `URLSession` + `@State` image loading with `AsyncImage`
