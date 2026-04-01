@@ -29,7 +29,7 @@ scripts/audit.py      # Structural integrity checks
 ---
 framework: FrameworkName
 title: "Exact session title from developer.apple.com"
-session: WWDC24-10137
+session: WWDC17-602  # 3-digit IDs for WWDC17/18/19 and WWDC25; 5-digit for WWDC20–24
 year: 2024
 applies_to: iOS 18+
 status: reference-only        # current | reference-only | deprecated
@@ -71,3 +71,11 @@ feat: add WWDC24-10137 SwiftData session file
 fix: correct #Index macro placement in WWDC24-10137
 docs: update canonical/swiftdata.md for iOS 18
 ```
+
+## Year-specific notes
+
+### WWDC17 (iOS 11 era)
+- Session IDs are 3-digit (e.g. `WWDC17-602`)
+- All WWDC17 sessions must be `status: deprecated` or `status: reference-only`
+- `status: current` is not valid for any WWDC17 session
+- Verify session IDs at `developer.apple.com/videos/play/wwdc2017/{ID}/` before use
