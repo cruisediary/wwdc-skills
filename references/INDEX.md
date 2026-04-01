@@ -21,6 +21,32 @@ All paths are relative to the `references/` directory.
 | canonical/create-ml.md | — | Create ML | macOS 10.14+ | deprecated | Superseded by Create ML app and Core ML workflow |
 | canonical/arkit.md | — | ARKit | iOS 11+ | deprecated | ARKit 1–3 superseded by RealityKit + visionOS for spatial computing |
 | canonical/siri-shortcuts.md | — | Siri Shortcuts | iOS 12+ | deprecated | INIntent/INExtension superseded by App Intents framework (iOS 16+) |
+<!-- 2017 -->
+| 2017/WWDC17-201-introducing-drag-and-drop.md | Introducing Drag and Drop | UIKit | iOS 11+ | reference-only | WWDC17: UIDragInteraction, UIDropInteraction, UIDragItem, NSItemProvider drag data model |
+| 2017/WWDC17-203-whats-new-in-cocoa-touch.md | What's New in Cocoa Touch | UIKit | iOS 11+ | deprecated | WWDC17: safe area APIs, large title navigation bars, UITableView drag-and-drop, contentInsetAdjustmentBehavior |
+| 2017/WWDC17-207-introducing-pdfkit-on-ios.md | Introducing PDFKit on iOS | PDFKit | iOS 11+ | reference-only | WWDC17: PDFView, PDFDocument, PDFPage, PDFThumbnailView, PDFAnnotation |
+| 2017/WWDC17-212-whats-new-in-mapkit.md | What's New in MapKit | MapKit | iOS 11+ | reference-only | WWDC17: MKMarkerAnnotationView, MKClusterAnnotation, annotation clustering |
+| 2017/WWDC17-213-drag-and-drop-with-collection-and-table-view.md | Drag and Drop with Collection and Table View | UIKit | iOS 11+ | reference-only | WWDC17: UITableViewDragDelegate, UITableViewDropDelegate, UICollectionViewDragDelegate, UIDragItem |
+| 2017/WWDC17-214-whats-new-in-sirikit.md | What's New in SiriKit | SiriKit | iOS 11+ | deprecated | WWDC17: INExtension, INIntent, Lists & Notes domain, INPaymentsDomain |
+| 2017/WWDC17-223-mastering-drag-and-drop.md | Mastering Drag and Drop | UIKit | iOS 11+ | reference-only | WWDC17: UIDragPreviewParameters, UITargetedDragPreview, multi-item drag, progress tracking |
+| 2017/WWDC17-228-making-great-sirikit-experiences.md | Making Great SiriKit Experiences | SiriKit | iOS 11+ | deprecated | WWDC17: INIntentResolutionResult, contact resolution, custom vocabulary, INUIAddVoiceShortcutButton |
+| 2017/WWDC17-401-whats-new-in-lldb.md | LLDB: Beyond "po" | LLDB | iOS 11+ | reference-only | WWDC17: po vs p vs v commands, debugDescription, CustomDebugStringConvertible, expr command |
+| 2017/WWDC17-402-whats-new-in-swift.md | What's New in Swift | Swift | iOS 11+ | deprecated | WWDC17: Codable, JSONEncoder, JSONDecoder, Swift 4 strings, one-sided ranges |
+| 2017/WWDC17-405-whats-new-in-testing.md | What's New in Testing | XCTest | iOS 11+ | reference-only | WWDC17: measure() performance testing, parallel testing, XCTActivity, XCUIElement |
+| 2017/WWDC17-409-whats-new-in-xcode-9.md | What's New in Xcode 9 | Xcode | iOS 11+ | deprecated | WWDC17: wireless debugging, cross-file rename, GitHub source control integration |
+| 2017/WWDC17-411-whats-new-in-swift-package-manager.md | What's New in Swift Package Manager | Swift Package Manager | iOS 11+ | deprecated | WWDC17: Package.swift swift-tools-version:4.0, target dependencies, local packages |
+| 2017/WWDC17-506-vision-framework-building-on-core-ml.md | Vision Framework: Building on Core ML | Vision | iOS 11+ | reference-only | WWDC17: VNRequest, VNImageRequestHandler, VNCoreMLRequest, VNRecognizeTextRequest |
+| 2017/WWDC17-510-advances-in-core-image-filters-and-effects.md | Advances in Core Image: Filters and Effects | Core Image | iOS 11+ | reference-only | WWDC17: CIFilter, CIKernel, Metal-backed kernels, CIContext, custom filter authoring |
+| 2017/WWDC17-602-introducing-arkit.md | Introducing ARKit: Augmented Reality for iOS | ARKit | iOS 11+ | deprecated | WWDC17: ARSession, ARAnchor, ARPlaneAnchor, ARSCNView, world tracking |
+| 2017/WWDC17-604-introducing-musickit-on-ios.md | Introducing MusicKit on iOS | MusicKit | iOS 11+ | reference-only | WWDC17: SKCloudServiceController, MPMusicPlayerController, Apple Music authorization |
+| 2017/WWDC17-607-metal-2-optimization-and-debugging.md | Metal 2 Optimization and Debugging | Metal | iOS 11+ | reference-only | WWDC17: Metal Frame Debugger, GPU pipeline statistics, performance counter profiling |
+| 2017/WWDC17-703-introducing-core-ml.md | Introducing Core ML | Core ML | iOS 11+ | deprecated | WWDC17: MLModel, MLModelConfiguration, VNCoreMLModel, .mlmodel format |
+| 2017/WWDC17-706-modernizing-grand-central-dispatch-usage.md | Modernizing Grand Central Dispatch Usage | Foundation | iOS 11+ | reference-only | WWDC17: DispatchQueue serial queues, QoS classes, thread explosion prevention, DispatchSource |
+| 2017/WWDC17-708-best-practices-user-notifications.md | Best Practices and What's New in User Notifications | UserNotifications | iOS 11+ | reference-only | WWDC17: UNUserNotificationCenter, UNNotificationRequest, UNNotificationContent, grouped notifications |
+| 2017/WWDC17-709-advances-in-networking-part-2.md | Advances in Networking, Part 2 | URLSession | iOS 11+ | reference-only | WWDC17: waitsForConnectivity, URLSessionTaskMetrics, adaptive connectivity, background scheduling |
+| 2017/WWDC17-710-core-ml-in-depth.md | Core ML in Depth | Core ML | iOS 11+ | deprecated | WWDC17: MLModel internals, coremltools conversion, protobuf model spec, custom layers |
+| 2017/WWDC17-718-introducing-core-nfc.md | Introducing Core NFC | Core NFC | iOS 11+ | reference-only | WWDC17: NFCNDEFReaderSession, NFCNDEFReaderSessionDelegate, NDEF message reading |
+| 2017/WWDC17-810-updating-your-app-for-ios-11.md | Updating Your App for iOS 11 | UIKit | iOS 11+ | deprecated | WWDC17: safeAreaLayoutGuide, contentInsetAdjustmentBehavior, large title navigation, UITableView self-sizing |
 | 2018/swift-4-2.md | — | Swift | iOS 12+ | deprecated | WWDC18: conditional conformances, CaseIterable, random APIs |
 | 2018/arkit-2.md | — | ARKit | iOS 12+ | deprecated | WWDC18: ARKit 2 — world tracking, face anchors, image tracking |
 | 2018/create-ml.md | — | Create ML | macOS 10.14+ | deprecated | WWDC18: Create ML introduction — tabular, image, text classifiers |
