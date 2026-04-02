@@ -114,7 +114,7 @@ def check_index(issues):
 
 def check_session_files(issues):
     """1b + 1c + 1d: schema, shape compliance, ID format."""
-    year_dirs = [str(y) for y in range(2018, 2026)]
+    year_dirs = [str(y) for y in range(2017, 2026)]
     session_files = []
 
     for year in year_dirs:
